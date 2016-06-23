@@ -1,4 +1,4 @@
-package Clases;
+package com.parcial2_grupo7.Clases;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package Clases;
+package com.parcial2_grupo7.Clases;
 
 /**
  * Created by marti on 22/6/2016.
