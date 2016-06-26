@@ -7,6 +7,7 @@ import static spark.Spark.*;
 public class Main {
     // copiado del base de la pagina funciona genial 
     public static void main(String[] args) {
+
         get("/hello", (req, res) -> "Hello World");
     }
 }

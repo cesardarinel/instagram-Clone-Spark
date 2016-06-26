@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05d74a00-26ed-4fd1-9018-63ebde547cda" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Main.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Clases/Comentario.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Comentario.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Clases/Etiqueta.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Etiqueta.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Clases/Post.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Post.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Clases/Usuario.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Usuario.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/parcial2_grupo7_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/parcial2_grupo7_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/parcial2_grupo7_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/parcial2_grupo7_test.iml" />
+    <list default="true" id="05d74a00-26ed-4fd1-9018-63ebde547cda" name="Default" comment="Template responsive agreaga&#10;da">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/fonts/glyphicons-halflings-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/mountains.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/test2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/test_img.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/untitled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/css/bootstrap-theme.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/css/bootstrap-theme.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/css/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/css/bootstrap.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/css/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/css/bootstrap.min.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/fonts/glyphicons-halflings-regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/js/bootstrap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/js/bootstrap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap-3.3.6-dist/js/npm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/css/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/css/style.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/bootstrap.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
     </list>
     <ignored path="parcial2_grupo7.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,6 +53,13 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -47,18 +73,7 @@
           <activation />
         </task>
         <projects_view>
-          <tree_state>
-            <PATH>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
-              </PATH_ELEMENT>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="parcial2_grupo7" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
-              </PATH_ELEMENT>
-            </PATH>
-          </tree_state>
+          <tree_state />
         </projects_view>
       </state>
     </system>
@@ -71,7 +86,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
+            <state relative-caret-position="867">
               <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
@@ -81,18 +96,45 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="17" column="66" selection-start-line="17" selection-start-column="66" selection-end-line="17" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="53" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
+            <state relative-caret-position="221">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mountains.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/images/mountains.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="118">
+              <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/css/style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="205" column="17" selection-start-line="205" selection-start-column="17" selection-end-line="205" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -114,6 +156,7 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -278,7 +321,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="2933296701866" />
+        <entry key="$PROJECT_DIR$" value="2933622352277" />
         <entry key="$PROJECT_DIR$/../isc414p3-master" value="2930619351810" />
       </map>
     </option>
@@ -301,67 +344,67 @@
               <option name="name" value="parcial2_grupo7" />
               <option name="projectBuildClasspath">
                 <list>
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-native-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-open-api-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-ui-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-model-groovy-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-installation-beacon-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-resources-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-docs-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-cli-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/ant-launcher-1.9.6.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-base-services-groovy-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-core-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-messaging-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-tooling-api-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/ant-1.9.6.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-model-core-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/groovy-all-2.4.4.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-wrapper-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-launcher-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/gradle-base-services-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/ivy-2.2.0.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-language-jvm-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-ide-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-ivy-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-platform-native-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-plugin-development-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-build-init-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-testing-base-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-platform-base-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-dependency-management-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-reporting-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-resources-s3-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-build-comparison-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-language-groovy-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-tooling-api-builders-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-testing-jvm-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-sonar-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-test-kit-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-language-native-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-language-java-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-antlr-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-platform-play-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-osgi-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-jetty-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-code-quality-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-platform-jvm-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-plugin-use-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-testing-native-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-javascript-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-publish-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-signing-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-ear-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-jacoco-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-resources-http-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-announce-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-diagnostics-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-plugins-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-maven-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-scala-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-ide-native-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-language-scala-2.13.jar" />
-                  <option value="/usr/lib/gradle/2.13/lib/plugins/gradle-resources-sftp-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/ant-1.9.6.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/ant-launcher-1.9.6.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-base-services-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-base-services-groovy-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-cli-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-core-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-docs-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-installation-beacon-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-launcher-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-messaging-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-model-core-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-model-groovy-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-native-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-open-api-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-resources-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-tooling-api-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-ui-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/gradle-wrapper-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/groovy-all-2.4.4.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-announce-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-antlr-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-build-comparison-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-build-init-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-code-quality-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-dependency-management-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-diagnostics-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-ear-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-ide-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-ide-native-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-ivy-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-jacoco-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-javascript-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-jetty-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-language-groovy-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-language-java-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-language-jvm-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-language-native-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-language-scala-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-maven-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-osgi-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-platform-base-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-platform-jvm-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-platform-native-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-platform-play-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-plugin-development-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-plugin-use-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-plugins-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-publish-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-reporting-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-resources-http-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-resources-s3-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-resources-sftp-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-scala-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-signing-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-sonar-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-test-kit-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-testing-base-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-testing-jvm-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-testing-native-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/gradle-tooling-api-builders-2.13.jar" />
+                  <option value="$USER_HOME$/Documents/Installer/gradle-2.13-bin/gradle-2.13/lib/plugins/ivy-2.2.0.jar" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
                 </list>
@@ -385,7 +428,10 @@
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/resources/css/style.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/css/style.scss" />
         <option value="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/index.html" />
       </list>
     </option>
   </component>
@@ -403,9 +449,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="27" />
-    <option name="width" value="1366" />
-    <option name="height" value="741" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -432,9 +479,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -482,36 +526,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="parcial2_grupo7" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instagram-Clone-Spark" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="parcial2_grupo7" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -530,7 +548,59 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcial2_grupo7" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="instagram-Clone-Spark" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcial2_grupo7" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="instagram-Clone-Spark" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
@@ -543,6 +613,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -551,9 +624,25 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MicroFrameworkJava/blogSpark" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="132" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="161" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="162" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="837" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="155" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="153" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="155" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="829" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="instagram-Clone-Spark [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -753,16 +842,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="BatchConfigurationType" factoryName="Batch">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
@@ -1019,19 +1098,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
-      <setting name="environment" value="" />
-      <setting name="specsToExecute" value="" />
-      <setting name="tags" value="" />
-      <setting name="parallelNodes" value="" />
-      <setting name="execInParallel" value="false" />
-      <setting name="programParameters" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="moduleName" value="" />
-      <envMap />
-      <setting name="rowsRange" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -1087,6 +1153,8 @@
       <workItem from="1466648950153" duration="1338000" />
       <workItem from="1466650394870" duration="281000" />
       <workItem from="1466650713736" duration="1119000" />
+      <workItem from="1466812625741" duration="80000" />
+      <workItem from="1466812878290" duration="18707000" />
     </task>
     <task id="LOCAL-00001" summary="Creacion del proyecto con las clases por ahora necesarias&#10;">
       <created>1466618112618</created>
@@ -1095,11 +1163,46 @@
       <option name="project" value="LOCAL" />
       <updated>1466618112618</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Creacion del proyecto con las clases por ahora necesarias&#10;">
+      <created>1466913835786</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1466913835786</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Creacion del proyecto con las clases por ahora necesarias&#10;">
+      <created>1466913882147</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1466913882147</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Template responsive agregada">
+      <created>1466913932805</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1466913932805</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Template responsive agregada">
+      <created>1466914044562</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1466914044562</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Template responsive agreaga&#10;da">
+      <created>1466914715664</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1466914715664</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5253000" />
+    <option name="totallyTimeSpent" value="24040000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1111,25 +1214,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294509" sideWeight="0.4969605" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294509" sideWeight="0.51215804" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.51215804" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294509" sideWeight="0.48784193" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.48784193" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294509" sideWeight="0.4969605" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25455928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22314675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18229954" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2549168" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1140,6 +1242,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1182,7 +1285,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creacion del proyecto con las clases por ahora necesarias&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creacion del proyecto con las clases por ahora necesarias&#10;" />
+    <MESSAGE value="Template responsive agregada" />
+    <MESSAGE value="Template responsive agreaga&#10;da" />
+    <option name="LAST_COMMIT_MESSAGE" value="Template responsive agreaga&#10;da" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1193,6 +1298,38 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1245,25 +1382,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Etiqueta.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Post.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Usuario.java" />
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
+        <state relative-caret-position="867">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1272,14 +1394,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="66" selection-start-line="17" selection-start-column="66" selection-end-line="17" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/test_img.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/css/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="205" column="17" selection-start-line="205" selection-start-column="17" selection-end-line="205" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="53" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
+        <state relative-caret-position="221">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/mountains.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
           <folding />
         </state>
       </provider>
