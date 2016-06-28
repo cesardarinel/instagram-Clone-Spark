@@ -1,3 +1,7 @@
+ **Informe:**
+- Version: 0.0.4
+- 25% completados
+
 # instagram-Clone-Spark
 ----------
 **Red Social sobre fotografías**
