@@ -1,12 +1,16 @@
 package com.parcial2_grupo7.Clases;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 
 /**
  * Created by marti on 22/6/2016.
  */
+@Entity
 public class Usuario {
-
+    @Id
     private long id;
     private String imagen;
     private String username;
@@ -15,6 +19,8 @@ public class Usuario {
     private String descripcion;
     private Boolean tipoCuenta;
     private ArrayList<Post> posts;
+
+ //   hay que definir el modelo, es uno a mucho ?
 
     public Usuario() {
     }

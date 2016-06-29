@@ -68,3 +68,5 @@ fabric.properties
 # *.iml
 # modules.xml
 .gitignore
+build/
+src/test/
