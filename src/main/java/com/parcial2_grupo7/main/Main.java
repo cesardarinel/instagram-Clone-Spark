@@ -2,8 +2,13 @@ package com.parcial2_grupo7.main;
 
 import com.parcial2_grupo7.Clases.Usuario;
 import com.parcial2_grupo7.Servicios.BaseDatos;
+import com.parcial2_grupo7.Servicios.GestionDB;
+import com.parcial2_grupo7.Servicios.MantenimientoUsuario;
 import freemarker.template.Configuration;
+import org.eclipse.jetty.util.MultiMap;
+import org.eclipse.jetty.util.UrlEncoded;
 import spark.ModelAndView;
+import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
 import javax.persistence.EntityManager;
@@ -22,31 +27,6 @@ import static spark.Spark.*;
  * Created by cesar on 22/06/16.
  */
 public class Main {
-    // copiado del base de la pagina funciona genial
-    private static EntityManagerFactory emf;
-    private Class<Usuario> usuarioClass;
-
-    public static EntityManager getEntityManager(){
-        return emf.createEntityManager();
-    }
-    /**
-     *
-     * @param entidad
-     */
-    public static void Crear(Usuario entidad){
-
-        EntityManager em = getEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.persist(entidad);
-            em.getTransaction().commit();
-        }catch (Exception ex){
-            em.getTransaction().rollback();
-            throw  ex;
-        } finally {
-            em.close();
-        }
-    }
 
     public static void main(String[] args) {
 
@@ -55,23 +35,13 @@ public class Main {
         Configuration configuration = new Configuration();
         configuration.setClassForTemplateLoading(Main.class, "/template");
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
+
+       //iniciamos la base de datos
         try {
             BaseDatos.startDb();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        BaseDatos ba = new BaseDatos();
-        ba.getConexion();
-        ba.testConexion();
-
-        if(emf == null) {
-            emf = Persistence.createEntityManagerFactory("MiUnidadPersistencia");
-        }
-
-        Usuario prueba=new Usuario();
-        prueba.setUsername("cesar");
-        prueba.setPassword("123456");
-        Crear(prueba);
 
     	 get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -79,18 +49,73 @@ public class Main {
             //TODO modificar plantilla home/index
             return new ModelAndView(attributes, "index.ftl");
         }, freeMarkerEngine);
-
+        /**
+         * Login
+         */
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
+            if(request.queryParams("r") != null) {
+                attributes.put("message", "Estaba registrado y puede iniciar sesión ahora");
+            }
+            if(request.queryParams("err") != null) {
+                attributes.put("error", "Credenciales no validas...");
+            }
 
-            //TODO crear plantilla login
             return new ModelAndView(attributes, "login.ftl");
         }, freeMarkerEngine);
 
+        post("/login", (request, response) -> {
+            Map<String, Object> map = new HashMap<>();
+            Session session=request.session(true);
+            Usuario usuario = MantenimientoUsuario.getInstancia().find(request.queryParams("username"));
+
+            if (usuario==null ||!request.queryParams("password").equals(usuario.getPassword())){
+                response.redirect("/login?err=1");
+                halt();
+            }
+            else {
+                session.attribute("usuario", usuario);
+                response.redirect("/");
+                halt();
+            }
+            return null;
+        });
+        post("/cerrarsesion", (request, response) -> {
+            request.session().invalidate();
+            response.redirect("/");
+            return "Cesion cerrada";
+        });
+        /**
+         * registro
+         */
         get("/register", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
+            return new ModelAndView(attributes, "signup.ftl");
+        }, freeMarkerEngine);
 
-            //TODO crear plantilla registrar
+        post("/register", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            String error = null;
+            try {
+                if (!request.queryParams("username").equals(null) ){/*|| request.queryParams("email") == null
+                    || request.queryParams("password") == null|| request.queryParams("password2") == null){*/
+                    Usuario usuario =new Usuario();
+                    usuario.setPassword(request.queryParams("password"));
+                    usuario.setUsername(request.queryParams("username"));
+                    usuario.setEmail(request.queryParams("email"));
+                    MantenimientoUsuario.getInstancia().crear(usuario);
+                    response.redirect("/login?r=1");
+                    halt();
+                } else {
+                    error = "Error guardando";
+                }
+            }catch(Exception  e) {
+                error = "exception error";
+            }
+
+            attributes.put("error", error);
+            attributes.put("username", request.queryParams("username"));
+            attributes.put("email", request.queryParams("email"));
             return new ModelAndView(attributes, "signup.ftl");
         }, freeMarkerEngine);
 

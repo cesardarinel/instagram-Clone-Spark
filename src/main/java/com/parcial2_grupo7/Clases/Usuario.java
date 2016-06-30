@@ -13,10 +13,9 @@ import java.util.Set;
 public class Usuario  implements Serializable {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+
     private String imagen;
+    @Id
     private String username;
     private String email;
     private String password;
@@ -40,13 +39,6 @@ public class Usuario  implements Serializable {
         this.posts = posts;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;
