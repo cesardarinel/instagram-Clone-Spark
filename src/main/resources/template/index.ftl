@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width,user-scalable=no">
-    <title>Instagram Portfolio</title>
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Kaushan+Script|Montserrat' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="js/modernizr.js"></script>
-</head>
-<body>
+<#include "*/head/head.ftl">
 <header>
     <img src="images/mountains.jpg" alt="Mountains">
     <div class="name fancy-font">
@@ -16,6 +7,10 @@
     <div class="titles">
         <h1>Hello! <span>I'm Jonathan</span></h1>
         <h2>I love to travel all around the world and design beautiful things</h2>
+        <br>
+       <button id="center-bottom-button-bar" type="button"><a href="/crearpost">Crear Post</a></button>
+
+
     </div>
     <div class="social">
         <a class="facebook" href="#">Facebook</a>
