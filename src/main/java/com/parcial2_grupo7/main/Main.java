@@ -1,4 +1,5 @@
 package com.parcial2_grupo7.main;
+
 import com.parcial2_grupo7.Clases.Usuario;
 import com.parcial2_grupo7.Servicios.BaseDatos;
 import freemarker.template.Configuration;
@@ -9,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.sql.SQLException;
+
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +52,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         staticFileLocation("/Recursos");
         Configuration configuration = new Configuration();
         configuration.setClassForTemplateLoading(Main.class, "/template");
@@ -68,13 +73,27 @@ public class Main {
         prueba.setPassword("123456");
         Crear(prueba);
 
-
-        get("/hello", (req, res) -> {
-
-            //nulo solo para ver, me esta explotando
+    	 get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
+
+            //TODO modificar plantilla home/index
             return new ModelAndView(attributes, "index.ftl");
         }, freeMarkerEngine);
+
+        get("/login", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            //TODO crear plantilla login
+            return new ModelAndView(attributes, "login.ftl");
+        }, freeMarkerEngine);
+
+        get("/register", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            //TODO crear plantilla registrar
+            return new ModelAndView(attributes, "signup.ftl");
+        }, freeMarkerEngine);
+
 
     }
 }

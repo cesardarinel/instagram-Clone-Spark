@@ -67,6 +67,10 @@ fabric.properties
 
 # *.iml
 # modules.xml
-.gitignore
+#.gitignore
 build/
 src/test/
+.idea/modules/parcial2_grupo7.iml~
+.idea/workspace.xml~
+src/main/java/com/parcial2_grupo7/main/Main.java~
+src/main/resources/template/index.ftl~
