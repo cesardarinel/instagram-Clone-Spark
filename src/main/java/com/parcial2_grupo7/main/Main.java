@@ -26,11 +26,9 @@ public class Main {
     private static EntityManagerFactory emf;
     private Class<Usuario> usuarioClass;
 
-
     public static EntityManager getEntityManager(){
         return emf.createEntityManager();
     }
-
     /**
      *
      * @param entidad
@@ -65,9 +63,11 @@ public class Main {
         BaseDatos ba = new BaseDatos();
         ba.getConexion();
         ba.testConexion();
+
         if(emf == null) {
             emf = Persistence.createEntityManagerFactory("MiUnidadPersistencia");
         }
+
         Usuario prueba=new Usuario();
         prueba.setUsername("cesar");
         prueba.setPassword("123456");

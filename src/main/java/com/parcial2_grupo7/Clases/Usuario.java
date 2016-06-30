@@ -1,16 +1,20 @@
 package com.parcial2_grupo7.Clases;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * Created by marti on 22/6/2016.
  */
 @Entity
-public class Usuario {
+public class Usuario  implements Serializable {
+
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String imagen;
     private String username;
@@ -18,15 +22,15 @@ public class Usuario {
     private String password;
     private String descripcion;
     private Boolean tipoCuenta;
-    private ArrayList<Post> posts;
+    @ManyToMany
+    private Set<Post> posts;
 
  //   hay que definir el modelo, es uno a mucho ?
 
     public Usuario() {
     }
 
-    public Usuario(long id, String imagen, String username, String email, String password, String descripcion, Boolean tipoCuenta, ArrayList<Post> posts) {
-        this.id = id;
+    public Usuario(String imagen, String username, String email, String password, String descripcion, Boolean tipoCuenta, Set<Post> posts) {
         this.imagen = imagen;
         this.username = username;
         this.email = email;
@@ -91,13 +95,14 @@ public class Usuario {
     public void setTipoCuenta(Boolean tipoCuenta) {
         this.tipoCuenta = tipoCuenta;
     }
-
-    public ArrayList<Post> getPosts() {
+    public Set<Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(ArrayList<Post> posts) {
+    public void setPosts(Set<Post> posts) {
         this.posts = posts;
     }
+
+
 }
 

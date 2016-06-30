@@ -17,7 +17,7 @@ public class BaseDatos {
 
 
     private static BaseDatos instancia;
-    private String URL = "jdbc:h2:tcp://localhost/~/pruebaTep";
+    private String URL = "jdbc:h2:tcp://localhost/~/pruebaInst";
 
     /**
      *Implementando el patron Singlenton

@@ -1,13 +1,20 @@
 package com.parcial2_grupo7.Clases;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Created by marti on 22/6/2016.
  */
-public class Comentario {
-
+@Entity
+public class Comentario implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String comentario;
+    @OneToOne
     private Usuario usuario;
+    @ManyToOne
     private Post post;
 
 
