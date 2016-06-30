@@ -1,5 +1,6 @@
 package com.parcial2_grupo7.main;
 
+import com.parcial2_grupo7.Clases.Post;
 import com.parcial2_grupo7.Clases.Usuario;
 import com.parcial2_grupo7.Servicios.BaseDatos;
 import com.parcial2_grupo7.Servicios.GestionDB;
@@ -14,10 +15,16 @@ import spark.template.freemarker.FreeMarkerEngine;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.Part;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 
-
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -118,6 +125,56 @@ public class Main {
             attributes.put("email", request.queryParams("email"));
             return new ModelAndView(attributes, "signup.ftl");
         }, freeMarkerEngine);
+
+        get("/crearpost", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            attributes.put("post", new Post("", null, "", null, null,null));
+            attributes.put("stringEtiquetas", "");
+
+            return new ModelAndView(attributes, "crearPost.ftl");
+        }, freeMarkerEngine);
+
+        post("/crearpost", "multipart/form-data", (request, response) -> {
+
+            //TODO Crear el post y guardalo en la base de datos
+            //TODO cambiar direccion en donde se van a guardar las fotos
+            //TODO Crear restrincion para que solo se pueda subir fotos
+
+            //CODIGO PARA GUARDAR LA IMAGEN
+            //- Servlet 3.x config
+            String location = "E:\\Desktop\\Instagram\\src\\main\\resources\\Fotos\\";  // the directory location where files will be stored
+            long maxFileSize = 100000000;  // the maximum size allowed for uploaded files
+            long maxRequestSize = 100000000;  // the maximum size allowed for multipart/form-data requests
+            int fileSizeThreshold = 1024;  // the size threshold after which files will be written to disk
+            MultipartConfigElement multipartConfigElement = new MultipartConfigElement(location, maxFileSize, maxRequestSize, fileSizeThreshold);
+            request.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
+
+
+            Collection<Part> parts = request.raw().getParts();
+            for(Part part : parts) {
+                System.out.println("Filename:");
+                System.out.println(part.getSubmittedFileName());
+            }
+
+            String fName = request.raw().getPart("upfile").getSubmittedFileName();
+            System.out.println("File: "+fName);
+
+            Part uploadedFile = request.raw().getPart("upfile");
+            Path out = Paths.get(location+fName);
+
+            try (final InputStream in = uploadedFile.getInputStream()) {
+                Files.copy(in, out);
+                uploadedFile.delete();
+            }
+            // cleanup
+            multipartConfigElement = null;
+            parts = null;
+            uploadedFile = null;
+
+            response.redirect("/");
+            return "";
+        });
 
 
     }
