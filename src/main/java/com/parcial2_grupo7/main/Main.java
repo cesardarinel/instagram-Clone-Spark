@@ -24,10 +24,7 @@ import java.sql.SQLException;
 
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static spark.Spark.*;
 
@@ -62,7 +59,11 @@ public class Main {
         get("/home", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            //TODO modificar plantilla home/index
+            Usuario usuario = request.session().attribute("usuario");
+            List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
+            attributes.put("posts",listaPost );
+            attributes.put("usuario",usuario);
+
             return new ModelAndView(attributes, "timeline.ftl");
         }, freeMarkerEngine);
         /**
@@ -193,8 +194,6 @@ public class Main {
             post.setImagen(fName);
 
             MantenimientoPost.getInstancia().crear(post);
-            response.redirect("/login?r=1");
-            halt();
 
             response.redirect("/home");
             return "";
@@ -205,20 +204,20 @@ public class Main {
 
     //se crean las etiquetas si es necesario y se entran en una lista para luego asignarles un post.
     public static List<Etiqueta> creacionEtiquetas (String[] etiquetas){
-        List<Etiqueta> setEtiquetas= null;
+        List<Etiqueta> listaEtiquetas=  new ArrayList<Etiqueta>();
         for (String etiqueta : etiquetas) {
             try{
                 Etiqueta etiqueta1 = (Etiqueta) MantenimientoEtiqueta.getInstancia().getEntityManager().createQuery("SELECT E FROM Etiqueta E WHERE E.tag='" + etiqueta + "'").getSingleResult();
-                setEtiquetas.add(etiqueta1);
+                listaEtiquetas.add(etiqueta1);
 
             }catch (NoResultException e){
                 System.out.println(etiqueta);
                 Etiqueta newEtiqueta = new Etiqueta(0,etiqueta);
                 MantenimientoEtiqueta.getInstancia().crear(newEtiqueta);
-                setEtiquetas.add(newEtiqueta);// <---------------- aqui esta el error dice que es null, pero cuando lo imprimo arriba tiene un valor.
+                listaEtiquetas.add(newEtiqueta);
             }
 
         }
-        return setEtiquetas;
+        return listaEtiquetas;
     }
 }

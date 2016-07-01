@@ -12,7 +12,7 @@
 <body>
 
 <span class="first"> 
-            @NombreUsuario
+            ${usuario.getUsername()}
            <a href="/crearpost"><span class="icon-edit new"></span>
                </a>
      <a href="/cerrarsesion">Cerrar seccion
@@ -20,6 +20,7 @@
         </span>
 <div style="text-align: center;">
     <ul class="timeline">
+        <#list posts as post>
         <li>
             <div class="avatar">
                 <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
@@ -29,64 +30,17 @@
                     <div class="retweet">
 
                     </div>
-                    <img src="images/test_img.jpg" width="600" height="600"><br/>
-                    <h3>@russel</h3>
+                    <img src="src\main\resources\img\${post.getImagen()}" width="600" height="600"><br/>
+                    <h3>${post.getCuerpo()}</h3>
                     <div class="over-bubble">
                         <div class="icon-star"></div>
                     </div>
                 </div>
             </div>
         </li>
-        <li>
-            <div class="avatar">
-                <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
-            </div>
-            <div class="bubble-container">
-                <div class="bubble">
-                    <div class="retweet">
-
-                    </div>
-
-                    <img src="images/test_img.jpg" width="600" height="600"><br/>
-                    <h3>@russel</h3>
-                    <div class="over-bubble">
-                        <div class="icon-star"></div>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="avatar">
-                <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
-            </div>
-            <div class="bubble-container">
-                <div class="bubble">
-
-                    <img src="images/test_img.jpg" width="600" height="600"><br/>
-                    <h3>@russel</h3>
-                    <div class="over-bubble">
-                        <div class="icon-star"></div>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="avatar">
-                <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
-            </div>
-            <div class="bubble-container">
-                <div class="bubble">
-                    <img src="images/test_img.jpg" width="600" height="600"><br/>
-                    <h3>@russel</h3>
-                    <div class="over-bubble">
-                        <div class="icon-star"></div>
-                    </div>
-                </div>
-            </div>
-        </li>
+        </#list>
     </ul>
 </div>
 
-</div>
 </body>
 </html>
