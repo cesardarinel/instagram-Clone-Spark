@@ -1,4 +1,4 @@
-
+<#include "*/head/head.ftl">
 <h2>Sign In</h2>
     <#if message??>
     <div class="success">
