@@ -183,7 +183,16 @@ public class Main {
             response.redirect("/");
             return "";
         });
-
+        post("megusta/", (request, response) -> {
+            Usuario u = request.session().attribute("usuario");
+            if(u == null) {
+                response.redirect("../login");
+            }
+            else{
+             //Todo , se supone busco el post del usuario y le pongo me gusta(sino crear una tabla megusta que tenga usuario y post 
+            }
+            return "success";
+        });
 
     }
 }
