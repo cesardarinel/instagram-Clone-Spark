@@ -48,6 +48,8 @@ public class Main {
             e.printStackTrace();
         }
 
+
+        //Filtros
         Filtro ft = new Filtro();
         ft.aplicarFiltros();
     	 get("/", (request, response) -> {
@@ -62,6 +64,10 @@ public class Main {
             //TODO modificar plantilla home/index
             return new ModelAndView(attributes, "timeline.ftl");
         }, freeMarkerEngine);
+
+
+
+
         /**
          * Login
          */
