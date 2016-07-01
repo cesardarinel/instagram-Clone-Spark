@@ -17,5 +17,5 @@
         <dt>Password:
         <dd><input type="password" name="password" size="30">
     </dl>
-    <div class="actions"><input type="submit" value="Sign In"></div>
+    <div class="actions"><input type="submit" onClick="valido(this.form)" value="Sign In"></div>
 </form>
