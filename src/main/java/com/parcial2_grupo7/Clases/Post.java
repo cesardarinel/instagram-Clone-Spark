@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,9 +20,9 @@ public class Post implements Serializable {
     private LocalDate fecha;
     private String cuerpo;
     @OneToMany
-    private Set<Comentario> comentarios;
+    private List<Comentario> comentarios;
     @OneToMany
-    private Set<Etiqueta> etiquetas;
+    private List<Etiqueta> etiquetas;
     @ManyToOne
     private Usuario usuario;
 
@@ -29,7 +30,7 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(String imagen, LocalDate fecha, String cuerpo, Set<Comentario> comentarios, Set<Etiqueta> etiquetas, Usuario usuario) {
+    public Post(String imagen, LocalDate fecha, String cuerpo, List<Comentario> comentarios, List<Etiqueta> etiquetas, Usuario usuario) {
         this.imagen = imagen;
         this.fecha = fecha;
         this.cuerpo = cuerpo;
@@ -79,19 +80,19 @@ public class Post implements Serializable {
         this.usuario = usuario;
     }
 
-    public Set<Comentario> getComentarios() {
+    public List<Comentario> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(Set<Comentario> comentarios) {
+    public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
 
-    public Set<Etiqueta> getEtiquetas() {
+    public List<Etiqueta> getEtiquetas() {
         return etiquetas;
     }
 
-    public void setEtiquetas(Set<Etiqueta> etiquetas) {
+    public void setEtiquetas(List<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
     }
 }
