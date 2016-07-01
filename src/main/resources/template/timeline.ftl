@@ -30,8 +30,9 @@
                     <div class="retweet">
 
                     </div>
-                    <img src="src\main\resources\img\${post.getImagen()}" width="600" height="600"><br/>
+                    <img src="images/${post.getImagen()}" width="600" height="600"><br/>
                     <h3>${post.getCuerpo()}</h3>
+
                     <div class="over-bubble">
                         <div class="icon-star"></div>
                     </div>

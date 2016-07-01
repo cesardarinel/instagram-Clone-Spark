@@ -59,6 +59,7 @@ public class Main {
         get("/home", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
+
             Usuario usuario = request.session().attribute("usuario");
             List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
             attributes.put("posts",listaPost );
@@ -154,7 +155,7 @@ public class Main {
 
             //CODIGO PARA GUARDAR LA IMAGEN
             //- Servlet 3.x config
-            String location = "src\\main\\resources\\img\\";  // the directory location where files will be stored
+            String location = "src\\main\\resources\\Recursos\\images\\";  // the directory location where files will be stored
             long maxFileSize = 100000000;  // the maximum size allowed for uploaded files
             long maxRequestSize = 100000000;  // the maximum size allowed for multipart/form-data requests
             int fileSizeThreshold = 1024;  // the size threshold after which files will be written to disk
@@ -189,7 +190,8 @@ public class Main {
             Post post =new Post();
             post.setUsuario(usuario);
             post.setCuerpo(request.queryParams("contenido"));
-            post.setEtiquetas(creacionEtiquetas(etiquetas));
+            List<Etiqueta> listaEtiquetas = creacionEtiquetas(etiquetas);
+            post.setEtiquetas(listaEtiquetas);
             post.setFecha(LocalDate.now());
             post.setImagen(fName);
 
