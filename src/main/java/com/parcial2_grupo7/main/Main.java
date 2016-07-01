@@ -1,5 +1,4 @@
 package com.parcial2_grupo7.main;
-
 import com.parcial2_grupo7.Clases.Post;
 import com.parcial2_grupo7.Clases.Usuario;
 import com.parcial2_grupo7.Servicios.BaseDatos;
@@ -27,7 +26,6 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
 import static spark.Spark.*;
 
 /**
@@ -49,6 +47,7 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         Filtro ft = new Filtro();
         ft.aplicarFiltros();
     	 get("/", (request, response) -> {
@@ -89,6 +88,7 @@ public class Main {
             }
             else {
                 session.attribute("usuario", usuario);
+
                 response.redirect("/home");
                 halt();
             }
