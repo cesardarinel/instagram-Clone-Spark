@@ -49,7 +49,8 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        Filtro ft = new Filtro();
+        ft.aplicarFiltros();
     	 get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
