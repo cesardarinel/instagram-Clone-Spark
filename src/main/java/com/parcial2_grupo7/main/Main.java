@@ -74,7 +74,7 @@ public class Main {
                 attributes.put("error", "Credenciales no validas...");
             }
 
-            return new ModelAndView(attributes, "login.ftl");
+            return new ModelAndView(attributes, "singin.ftl");
         }, freeMarkerEngine);
 
         post("/login", (request, response) -> {
@@ -93,6 +93,7 @@ public class Main {
             }
             return null;
         });
+
         get("/cerrarsesion", (request, response) -> {
             request.session().invalidate();
             response.redirect("/");
@@ -103,7 +104,7 @@ public class Main {
          */
         get("/register", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            return new ModelAndView(attributes, "signup.ftl");
+            return new ModelAndView(attributes, "singin.ftl");
         }, freeMarkerEngine);
 
         post("/register", (request, response) -> {
@@ -129,7 +130,7 @@ public class Main {
             attributes.put("error", error);
             attributes.put("username", request.queryParams("username"));
             attributes.put("email", request.queryParams("email"));
-            return new ModelAndView(attributes, "signup.ftl");
+            return new ModelAndView(attributes, "singin.ftl");
         }, freeMarkerEngine);
 
         get("/crearpost", (request, response) -> {
