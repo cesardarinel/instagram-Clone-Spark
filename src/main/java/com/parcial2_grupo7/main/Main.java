@@ -149,19 +149,19 @@ public class Main {
 
             //CODIGO PARA GUARDAR LA IMAGEN
             //- Servlet 3.x config
-            String location = "E:\\Desktop\\Instagram\\src\\main\\resources\\Fotos\\";  // the directory location where files will be stored
+            String location = "src\\main\\resources\\img\\";  // the directory location where files will be stored
             long maxFileSize = 100000000;  // the maximum size allowed for uploaded files
             long maxRequestSize = 100000000;  // the maximum size allowed for multipart/form-data requests
             int fileSizeThreshold = 1024;  // the size threshold after which files will be written to disk
             MultipartConfigElement multipartConfigElement = new MultipartConfigElement(location, maxFileSize, maxRequestSize, fileSizeThreshold);
             request.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
 
-
+            /*
             Collection<Part> parts = request.raw().getParts();
             for(Part part : parts) {
                 System.out.println("Filename:");
                 System.out.println(part.getSubmittedFileName());
-            }
+            }*/
 
             String fName = request.raw().getPart("upfile").getSubmittedFileName();
             System.out.println("File: "+fName);
@@ -175,7 +175,7 @@ public class Main {
             }
             // cleanup
             multipartConfigElement = null;
-            parts = null;
+           // parts = null;
             uploadedFile = null;
 
             response.redirect("/");
