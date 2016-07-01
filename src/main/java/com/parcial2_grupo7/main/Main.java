@@ -1,20 +1,17 @@
 package com.parcial2_grupo7.main;
 
+import com.parcial2_grupo7.Clases.Etiqueta;
 import com.parcial2_grupo7.Clases.Post;
 import com.parcial2_grupo7.Clases.Usuario;
 import com.parcial2_grupo7.Servicios.BaseDatos;
-import com.parcial2_grupo7.Servicios.GestionDB;
+import com.parcial2_grupo7.Servicios.MantenimientoEtiqueta;
+import com.parcial2_grupo7.Servicios.MantenimientoPost;
 import com.parcial2_grupo7.Servicios.MantenimientoUsuario;
 import freemarker.template.Configuration;
-import org.eclipse.jetty.util.MultiMap;
-import org.eclipse.jetty.util.UrlEncoded;
 import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.Part;
 import java.io.InputStream;
@@ -24,9 +21,10 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 
-import java.util.Collection;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import static spark.Spark.*;
 
@@ -178,10 +176,39 @@ public class Main {
            // parts = null;
             uploadedFile = null;
 
-            response.redirect("/");
+            String etiquetasStr = request.queryParams("etiquetas");
+            String etiquetas[] = etiquetasStr.split("\\s*,\\s*");
+            request.session().attribute("")
+            Post post =new Post();
+            post.setCuerpo(request.queryParams("contenido"));
+            post.setEtiquetas(creacionEtiquetas(etiquetas));
+            post.setFecha(LocalDate.now());
+            post.setImagen(fName);
+            post.setUsuario();
+
+
+            MantenimientoPost.getInstancia().crear(post);
+            response.redirect("/login?r=1");
+            halt();
+
+            response.redirect("/home");
             return "";
         });
 
 
+    }
+
+    public static Set<Etiqueta> creacionEtiquetas (String[] etiquetas){
+        Set<Etiqueta> setEtiquetas= null;
+        for (String etiqueta : etiquetas) {
+            Etiqueta etiqueta1 = (Etiqueta) MantenimientoEtiqueta.getInstancia().getEntityManager().createQuery("SELECT E FROM Etiqueta E WHERE E.etiqueta='" + etiqueta + "'").getSingleResult();
+            if (etiqueta1!= null) {
+                setEtiquetas.add(etiqueta1);
+            } else {
+                setEtiquetas.add(new Etiqueta(0, etiqueta));
+            }
+
+        }
+        return setEtiquetas;
     }
 }

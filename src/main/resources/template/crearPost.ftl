@@ -5,7 +5,6 @@
             <form method="post" action="/crearpost" enctype="multipart/form-data">
                 <div class="form-group">
 
-
                     <label for="upfile">Imagen:</label>
                     <input type="file" name="upfile"><br>
 
@@ -13,7 +12,7 @@
 
                 <div class="form-group">
                     <label>Contenido</label>
-                    <textarea id="text" name="contenido" class="form-control">${post.getCuerpo()}</textarea>
+                    <textarea type="text" name="contenido" class="form-control">${post.getCuerpo()}</textarea>
                 </div>
 
                 <div class="form-group">

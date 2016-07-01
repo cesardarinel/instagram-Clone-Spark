@@ -1,7 +1,6 @@
 package com.parcial2_grupo7.Servicios;
 
 import com.parcial2_grupo7.Clases.Post;
-import com.parcial2_grupo7.Clases.Usuario;
 
 /**
  * Created by marti on 30/6/2016.
