@@ -44,7 +44,7 @@ public class Main {
         configuration.setClassForTemplateLoading(Main.class, "/template");
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
 
-       //iniciamos la base de datos
+        //iniciamos la base de datos
         try {
             BaseDatos.startDb();
         } catch (SQLException e) {
@@ -53,7 +53,7 @@ public class Main {
         Filtro ft = new Filtro();
         ft.aplicarFiltros();
 
-    	 get("/", (request, response) -> {
+        get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
             //TODO modificar plantilla home/index
@@ -67,8 +67,8 @@ public class Main {
             System.out.println(usuario.getUsername());
             List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
             Collections.reverse(listaPost);
-            attributes.put("posts",listaPost );
-            attributes.put("usuario",usuario);
+            attributes.put("posts", listaPost);
+            attributes.put("usuario", usuario);
 
 
             return new ModelAndView(attributes, "timeline.ftl");
@@ -82,8 +82,8 @@ public class Main {
             List<Post> listaPostUsuario = MantenimientoPost.getInstancia().getEntityManager().createQuery("SELECT P FROM Post P WHERE P.usuario='" + usuario.getUsername() + "'").getResultList();
             System.out.println(listaPostUsuario.size());
             Collections.reverse(listaPostUsuario);
-            attributes.put("posts",listaPostUsuario );
-            attributes.put("usuario",usuario);
+            attributes.put("posts", listaPostUsuario);
+            attributes.put("usuario", usuario);
 
 
             return new ModelAndView(attributes, "usuario.ftl");
@@ -93,10 +93,10 @@ public class Main {
          */
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            if(request.queryParams("r") != null) {
+            if (request.queryParams("r") != null) {
                 attributes.put("message", "Estaba registrado y puede iniciar sesión ahora");
             }
-            if(request.queryParams("err") != null) {
+            if (request.queryParams("err") != null) {
                 attributes.put("error", "Credenciales no validas...");
             }
 
@@ -105,14 +105,13 @@ public class Main {
 
         post("/login", (request, response) -> {
             Map<String, Object> map = new HashMap<>();
-            Session session=request.session(true);
+            Session session = request.session(true);
             Usuario usuario = MantenimientoUsuario.getInstancia().find(request.queryParams("username"));
 
-            if (usuario==null ||!request.queryParams("password").equals(usuario.getPassword())){
+            if (usuario == null || !request.queryParams("password").equals(usuario.getPassword())) {
                 response.redirect("/login?err=1");
                 halt();
-            }
-            else {
+            } else {
                 session.attribute("usuario", usuario);
                 response.redirect("/home");
                 halt();
@@ -137,9 +136,9 @@ public class Main {
             Map<String, Object> attributes = new HashMap<>();
             String error = null;
             try {
-                if (!request.queryParams("username").equals(null) ){/*|| request.queryParams("email") == null
+                if (!request.queryParams("username").equals(null)) {/*|| request.queryParams("email") == null
                     || request.queryParams("password") == null|| request.queryParams("password2") == null){*/
-                    Usuario usuario =new Usuario();
+                    Usuario usuario = new Usuario();
                     usuario.setPassword(request.queryParams("password"));
                     usuario.setUsername(request.queryParams("username"));
                     usuario.setDescripcion(request.queryParams("descripcion"));
@@ -150,7 +149,7 @@ public class Main {
                 } else {
                     error = "Error guardando";
                 }
-            }catch(Exception  e) {
+            } catch (Exception e) {
                 error = "exception error";
             }
 
@@ -163,7 +162,7 @@ public class Main {
         get("/crearpost", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            attributes.put("post", new Post("","",null,null,null,null,0));
+            attributes.put("post", new Post("", "", null, null, null, null, 0));
             attributes.put("stringEtiquetas", "");
 
             return new ModelAndView(attributes, "crearPost.ftl");
@@ -192,10 +191,10 @@ public class Main {
             }*/
 
             String fName = request.raw().getPart("upfile").getSubmittedFileName();
-            System.out.println("File: "+fName);
+            System.out.println("File: " + fName);
 
             Part uploadedFile = request.raw().getPart("upfile");
-            Path out = Paths.get(location+fName);
+            Path out = Paths.get(location + fName);
 
             try (final InputStream in = uploadedFile.getInputStream()) {
                 Files.copy(in, out);
@@ -203,13 +202,13 @@ public class Main {
             }
             // cleanup
             multipartConfigElement = null;
-           // parts = null;
+            // parts = null;
             uploadedFile = null;
 
             String etiquetasStr = request.queryParams("etiquetas");
             String etiquetas[] = etiquetasStr.split("\\s*,\\s*");
             Usuario usuario = request.session().attribute("usuario");
-            Post post =new Post();
+            Post post = new Post();
             post.setUsuario(usuario);
             post.setCuerpo(request.queryParams("contenido"));
             List<Etiqueta> listaEtiquetas = creacionEtiquetas(etiquetas);
@@ -218,7 +217,6 @@ public class Main {
             post.setImagen(fName);
 
             MantenimientoPost.getInstancia().crear(post);
-
 
 
             response.redirect("/home");
@@ -234,11 +232,60 @@ public class Main {
             Usuario usuario = request.session().attribute("usuario");
             System.out.println(usuario.getUsername());
             Post post = MantenimientoPost.getInstancia().find(Integer.parseInt(request.queryParams("id_post")));
-            Comentario comentario = new Comentario(comentarioStr,usuario,post);
+            Comentario comentario = new Comentario(comentarioStr, usuario, post);
             MantenimientoComentario.getInstancia().crear(comentario);
-            if(comentarioStr.length()==0){
+            if (comentarioStr.length() == 0) {
                 return "El comentario esta vacio";
             }
+
+            response.redirect("/home");
+
+            return "";
+        });
+
+        get("/editarpost/:id_post", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("titulo", "Editar articulo");
+
+            int id_post = Integer.parseInt(request.params("id_post"));
+            Post post = MantenimientoPost.getInstancia().find(id_post);
+            String etiquetasstr = "";
+            for (Etiqueta s : post.getEtiquetas()) {
+                etiquetasstr += s.getEtiqueta() + ", ";
+            }
+
+            attributes.put("post", post);
+            attributes.put("stringEtiquetas", etiquetasstr);
+
+
+            return new ModelAndView(attributes, "editpost.ftl");
+        }, freeMarkerEngine);
+
+
+        post("/editarpost", (request, response) -> {
+
+            String str = request.queryParams("etiquetas");
+            String contenido = request.queryParams("contenido");
+            String etiquetas[] = str.split("\\s*,\\s*");
+            int id = Integer.parseInt(request.queryParams("id"));
+
+
+            Post post = MantenimientoPost.getInstancia().find(id);
+            post.setCuerpo(contenido);
+            post.setEtiquetas(creacionEtiquetas(etiquetas));
+            MantenimientoPost.getInstancia().editar(post);
+
+            response.redirect("/home");
+            return "";
+
+        });
+
+        get("/eliminarpost/:id_post", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            int id_post = Integer.parseInt(request.params("id_post"));
+            Post post = MantenimientoPost.getInstancia().find(id_post);
+            MantenimientoPost.getInstancia().eliminar(post);
 
             response.redirect("/home");
 
@@ -249,14 +296,14 @@ public class Main {
     }
 
     //se crean las etiquetas si es necesario y se entran en una lista para luego asignarles un post.
-    public static List<Etiqueta> creacionEtiquetas (String[] etiquetas){
-        List<Etiqueta> listaEtiquetas=  new ArrayList<Etiqueta>();
+    public static List<Etiqueta> creacionEtiquetas(String[] etiquetas) {
+        List<Etiqueta> listaEtiquetas = new ArrayList<Etiqueta>();
         for (String etiqueta : etiquetas) {
-            try{
+            try {
                 Etiqueta etiqueta1 = (Etiqueta) MantenimientoEtiqueta.getInstancia().getEntityManager().createQuery("SELECT E FROM Etiqueta E WHERE E.etiqueta='" + etiqueta + "'").getSingleResult();
                 listaEtiquetas.add(etiqueta1);
 
-            }catch (NoResultException e){
+            } catch (NoResultException e) {
                 System.out.println(etiqueta);
                 Etiqueta newEtiqueta = new Etiqueta(etiqueta);
                 listaEtiquetas.add(newEtiqueta);
