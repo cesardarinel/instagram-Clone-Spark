@@ -11,6 +11,8 @@
         <dd><input type="text" name="username" maxlength="50" size="30" value="${username!}">
         <dt>E-Mail:
         <dd><input type="text" name="email" maxlength="50" size="30" value="${email!}">
+        <dt>Sobre ti:
+        <dd><input type="text" name="descripcion" maxlength="144" size="50" value="${descripcion!}">
         <dt>Password:
         <dd><input type="password" name="password" maxlength="20" size="30">
         <dt>Password <small>(repeat)</small>:

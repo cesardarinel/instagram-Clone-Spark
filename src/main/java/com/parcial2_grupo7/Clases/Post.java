@@ -1,59 +1,71 @@
 package com.parcial2_grupo7.Clases;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by marti on 22/6/2016.
  */
 @Entity
-public class Post implements Serializable {
+@Table(name = "POST")
+public class Post{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String imagen;
-    private LocalDate fecha;
+    @Column (name = "ID")
+    private int id;
+
+    @Column (name = "CUERPO", length = 100000)
     private String cuerpo;
-    @OneToMany
-    private List<Comentario> comentarios;
-    @OneToMany
-    private List<Etiqueta> etiquetas;
-    @ManyToOne
+
+    @Column (name = "IMAGEN", length = 100)
+    private String imagen;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USUARIO_ID")
     private Usuario usuario;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comentario> comentarios = new ArrayList<>();
+
+    @ManyToMany (fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @JoinTable(name = "POST_ETIQUETA",joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "ETIQUETA_ID")})
+    private List<Etiqueta> etiquetas = new ArrayList<>();
+
+    @Column (name = "FECHA")
+    private LocalDate fecha;
+
+    @Column (name = "LIKES")
+    private int likes;
 
 
     public Post() {
     }
 
-    public Post(String imagen, LocalDate fecha, String cuerpo, List<Comentario> comentarios, List<Etiqueta> etiquetas, Usuario usuario) {
-        this.imagen = imagen;
-        this.fecha = fecha;
+    public Post(String cuerpo, String imagen, Usuario usuario, List<Comentario> comentarios, List<Etiqueta> etiquetas, LocalDate fecha, int likes) {
         this.cuerpo = cuerpo;
+        this.imagen = imagen;
+        this.usuario = usuario;
         this.comentarios = comentarios;
         this.etiquetas = etiquetas;
-        this.usuario = usuario;
-    }
+        this.fecha = fecha;
+        this.likes = likes;
 
+    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
     }
 
     public String getCuerpo() {
@@ -64,12 +76,12 @@ public class Post implements Serializable {
         this.cuerpo = cuerpo;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Usuario getUsuario() {
@@ -95,4 +107,21 @@ public class Post implements Serializable {
     public void setEtiquetas(List<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
     }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
 }

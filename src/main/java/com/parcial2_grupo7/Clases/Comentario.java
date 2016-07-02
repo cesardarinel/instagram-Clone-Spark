@@ -7,22 +7,29 @@ import java.io.Serializable;
  * Created by marti on 22/6/2016.
  */
 @Entity
-public class Comentario implements Serializable {
+@Table (name = "COMENTARIOS")
+public class Comentario{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column (name = "ID")
+    private int id;
+    @Column (name = "COMENTARIO")
     private String comentario;
-    @OneToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USUARIO_ID")
     private Usuario usuario;
-    @ManyToOne
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "POST_ID")
     private Post post;
 
 
     public Comentario() {
     }
 
-    public Comentario(long id, String comentario, Usuario usuario, Post post) {
-        this.id = id;
+    public Comentario(String comentario, Usuario usuario, Post post) {
         this.comentario = comentario;
         this.usuario = usuario;
         this.post = post;
@@ -32,7 +39,7 @@ public class Comentario implements Serializable {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

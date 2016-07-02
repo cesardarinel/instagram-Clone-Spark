@@ -11,42 +11,50 @@ import java.util.Set;
  * Created by marti on 22/6/2016.
  */
 @Entity
-public class Usuario  implements Serializable {
+@Table (name = "USUARIOS")
+public class Usuario {
 
 
-
-    private String imagen;
     @Id
+    @Column(name = "USERNAME")
     private String username;
+    @Column(name = "IMAGEN")
+    private String imagen;
+    @Column(name = "EMAIL")
     private String email;
+    @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "DESCRIPCION")
     private String descripcion;
-    private Boolean tipoCuenta;
-    @ManyToMany
-    private List<Post> posts;
 
- //   hay que definir el modelo, es uno a mucho ?
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Comentario> comentarios = new ArrayList<>();
+
 
     public Usuario() {
     }
 
-    public Usuario(String imagen, String username, String email, String password, String descripcion, Boolean tipoCuenta, List<Post> posts) {
+    public Usuario( String imagen, String username, String email, String password, String descripcion, List<Post> posts, List<Comentario> comentarios) {
         this.imagen = imagen;
         this.username = username;
         this.email = email;
         this.password = password;
         this.descripcion = descripcion;
-        this.tipoCuenta = tipoCuenta;
         this.posts = posts;
+        this.comentarios = comentarios;
     }
 
 
-    public String getEmail() {
-        return email;
+
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getUsername() {
@@ -57,12 +65,12 @@ public class Usuario  implements Serializable {
         this.username = username;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -81,13 +89,6 @@ public class Usuario  implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Boolean getTipoCuenta() {
-        return tipoCuenta;
-    }
-
-    public void setTipoCuenta(Boolean tipoCuenta) {
-        this.tipoCuenta = tipoCuenta;
-    }
     public List<Post> getPosts() {
         return posts;
     }
@@ -96,6 +97,12 @@ public class Usuario  implements Serializable {
         this.posts = posts;
     }
 
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
 
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
 }
 

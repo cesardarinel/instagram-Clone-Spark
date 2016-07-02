@@ -1,18 +1,19 @@
 package com.parcial2_grupo7.main;
 
+import com.parcial2_grupo7.Clases.Comentario;
 import com.parcial2_grupo7.Clases.Etiqueta;
 import com.parcial2_grupo7.Clases.Post;
+import com.parcial2_grupo7.Servicios.*;
 import com.parcial2_grupo7.main.Filtro;
 import com.parcial2_grupo7.Clases.Usuario;
-import com.parcial2_grupo7.Servicios.BaseDatos;
-import com.parcial2_grupo7.Servicios.MantenimientoEtiqueta;
-import com.parcial2_grupo7.Servicios.MantenimientoPost;
-import com.parcial2_grupo7.Servicios.MantenimientoUsuario;
 import freemarker.template.Configuration;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import spark.ModelAndView;
 import spark.Session;
+import spark.staticfiles.StaticFiles;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.Part;
@@ -27,6 +28,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static spark.Spark.*;
+import static spark.debug.DebugScreen.enableDebugScreen;
 
 /**
  * Created by cesar on 22/06/16.
@@ -37,6 +39,7 @@ public class Main {
 
 
         staticFileLocation("/Recursos");
+        enableDebugScreen();
         Configuration configuration = new Configuration();
         configuration.setClassForTemplateLoading(Main.class, "/template");
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
@@ -61,11 +64,29 @@ public class Main {
 
 
             Usuario usuario = request.session().attribute("usuario");
+            System.out.println(usuario.getUsername());
             List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
+            Collections.reverse(listaPost);
             attributes.put("posts",listaPost );
             attributes.put("usuario",usuario);
 
+
             return new ModelAndView(attributes, "timeline.ftl");
+        }, freeMarkerEngine);
+
+        get("/usuario/:username", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            Usuario usuario = (Usuario) MantenimientoUsuario.getInstancia().getEntityManager().createQuery("SELECT U FROM Usuario U WHERE U.username='" + request.params("username") + "'").getSingleResult();
+            System.out.println(usuario.getUsername());
+            List<Post> listaPostUsuario = MantenimientoPost.getInstancia().getEntityManager().createQuery("SELECT P FROM Post P WHERE P.usuario='" + usuario.getUsername() + "'").getResultList();
+            System.out.println(listaPostUsuario.size());
+            Collections.reverse(listaPostUsuario);
+            attributes.put("posts",listaPostUsuario );
+            attributes.put("usuario",usuario);
+
+
+            return new ModelAndView(attributes, "usuario.ftl");
         }, freeMarkerEngine);
         /**
          * Login
@@ -121,6 +142,7 @@ public class Main {
                     Usuario usuario =new Usuario();
                     usuario.setPassword(request.queryParams("password"));
                     usuario.setUsername(request.queryParams("username"));
+                    usuario.setDescripcion(request.queryParams("descripcion"));
                     usuario.setEmail(request.queryParams("email"));
                     MantenimientoUsuario.getInstancia().crear(usuario);
                     response.redirect("/login?r=1");
@@ -141,7 +163,7 @@ public class Main {
         get("/crearpost", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            attributes.put("post", new Post("", null, "", null, null,null));
+            attributes.put("post", new Post("","",null,null,null,null,0));
             attributes.put("stringEtiquetas", "");
 
             return new ModelAndView(attributes, "crearPost.ftl");
@@ -197,7 +219,29 @@ public class Main {
 
             MantenimientoPost.getInstancia().crear(post);
 
+
+
             response.redirect("/home");
+            return "";
+        });
+
+        post("/crearcomentario", (request, response) -> {
+
+
+            Map<String, Object> attr = new HashMap<String, Object>();
+            String comentarioStr = request.queryParams("comentario");
+
+            Usuario usuario = request.session().attribute("usuario");
+            System.out.println(usuario.getUsername());
+            Post post = MantenimientoPost.getInstancia().find(Integer.parseInt(request.queryParams("id_post")));
+            Comentario comentario = new Comentario(comentarioStr,usuario,post);
+            MantenimientoComentario.getInstancia().crear(comentario);
+            if(comentarioStr.length()==0){
+                return "El comentario esta vacio";
+            }
+
+            response.redirect("/home");
+
             return "";
         });
 
@@ -209,13 +253,12 @@ public class Main {
         List<Etiqueta> listaEtiquetas=  new ArrayList<Etiqueta>();
         for (String etiqueta : etiquetas) {
             try{
-                Etiqueta etiqueta1 = (Etiqueta) MantenimientoEtiqueta.getInstancia().getEntityManager().createQuery("SELECT E FROM Etiqueta E WHERE E.tag='" + etiqueta + "'").getSingleResult();
+                Etiqueta etiqueta1 = (Etiqueta) MantenimientoEtiqueta.getInstancia().getEntityManager().createQuery("SELECT E FROM Etiqueta E WHERE E.etiqueta='" + etiqueta + "'").getSingleResult();
                 listaEtiquetas.add(etiqueta1);
 
             }catch (NoResultException e){
                 System.out.println(etiqueta);
-                Etiqueta newEtiqueta = new Etiqueta(0,etiqueta);
-                MantenimientoEtiqueta.getInstancia().crear(newEtiqueta);
+                Etiqueta newEtiqueta = new Etiqueta(etiqueta);
                 listaEtiquetas.add(newEtiqueta);
             }
 

@@ -72,6 +72,9 @@
                                     <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="${email!}">
                                 </div>
                                 <div class="form-group">
+                                    <input type="text" name="descripcion" id="descripcion" tabindex="1" class="form-control" placeholder="Sobre ti" value="${descripcion!}">
+                                </div>
+                                <div class="form-group">
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                                 </div>
                                 <div class="form-group">

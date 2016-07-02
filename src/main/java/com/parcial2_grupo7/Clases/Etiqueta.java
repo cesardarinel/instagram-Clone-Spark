@@ -1,43 +1,55 @@
 package com.parcial2_grupo7.Clases;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by marti on 22/6/2016.
  */
 @Entity
-public class Etiqueta implements Serializable {
+@Table (name = "ETIQUETAS")
+public class Etiqueta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String tag;
+    @Column (name = "ID")
+    private int id;
+    @Column(name = "ETIQUETA")
+    private String etiqueta;
+
+    @ManyToMany(mappedBy = "etiquetas")
+    private List<Post> posts = new ArrayList<>();
 
     public Etiqueta() {
     }
 
-    public Etiqueta(long id, String tag) {
-        this.id = id;
-        this.tag = tag;
+    public Etiqueta(String etiqueta) {
+        this.etiqueta = etiqueta;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getTag() {
-        return tag;
+    public String getEtiqueta() {
+        return etiqueta;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setEtiqueta(String etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
