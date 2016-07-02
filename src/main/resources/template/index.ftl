@@ -21,7 +21,7 @@
                 <h4>Clone-Instagram</h4>
                 <p class="about-text">Regístrese para ver fotos de tus amigos.</p>
                 <a class="contact-now-btn" href="/login">Iniciar Sesión</a>
-                <a class="contact-now-btn" href="/registre">Regístrate</a>
+
             </div>
         </div>
     </div>
