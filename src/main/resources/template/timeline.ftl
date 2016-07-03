@@ -16,11 +16,11 @@
     <div class="avatar" style="float: left">
                 <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
             </div>
+    <div>
            <span style="float: left"><a href="usuario/${usuario.getUsername()}">${usuario.getUsername()}</a></span>
-           <a href="/crearpost"><span class="icon-edit new"></span>
-               </a>
-     <a href="/cerrarsesion">Cerrar seccion
-               </a>
+           <a class="icon-edit new" href="/crearpost"></a>
+     <ahref="/cerrarsesion">Cerrar seccion</a>
+    </div>
         </span>
 <div style="text-align: center;">
     <ul class="timeline">
@@ -53,7 +53,13 @@
 
         <p style="size: 20sp">Comentarios:</p>
     <#list post.getComentarios() as comentario>
-        <div><span><b>${comentario.getUsuario().getUsername()}:</b>${comentario.getComentario()}</span></div>
+    <div>
+       <span><b>${comentario.getUsuario().getUsername()}:</b>${comentario.getComentario()}</span>
+        <#if comentario.getUsuario().getUsername()== usuario.getUsername() ||  post.getUsuario().getUsername()== usuario.getUsername() >
+
+       <a style="color: red; float: right" href="/eliminarcomentario/${comentario.getId()}"> <span>eliminar</span></a>
+        </#if>
+    </div>
 
 
     </#list>

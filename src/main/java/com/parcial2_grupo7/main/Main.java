@@ -291,6 +291,16 @@ public class Main {
 
             return "";
         });
+        get("/eliminarcomentario/:id_comentario", (request, response) -> {
+
+            int id_comentario = Integer.parseInt(request.params("id_comentario"));
+            Comentario comentario = MantenimientoComentario.getInstancia().find(id_comentario);
+            MantenimientoComentario.getInstancia().eliminar(comentario);
+            response.redirect("/home");
+
+
+            return "";
+        });
 
 
     }
@@ -299,14 +309,13 @@ public class Main {
     public static List<Etiqueta> creacionEtiquetas(String[] etiquetas) {
         List<Etiqueta> listaEtiquetas = new ArrayList<Etiqueta>();
         for (String etiqueta : etiquetas) {
-            try {
-                Etiqueta etiqueta1 = (Etiqueta) MantenimientoEtiqueta.getInstancia().getEntityManager().createQuery("SELECT E FROM Etiqueta E WHERE E.etiqueta='" + etiqueta + "'").getSingleResult();
-                listaEtiquetas.add(etiqueta1);
-
-            } catch (NoResultException e) {
-                System.out.println(etiqueta);
-                Etiqueta newEtiqueta = new Etiqueta(etiqueta);
-                listaEtiquetas.add(newEtiqueta);
+            try{
+                Etiqueta etiquetaExistente = (Etiqueta) MantenimientoEtiqueta.getInstancia().getEntityManager().createQuery("SELECT E FROM Etiqueta E WHERE E.etiqueta='" + etiqueta + "'").getSingleResult();
+                listaEtiquetas.add(etiquetaExistente);
+            }catch (NoResultException e){
+                Etiqueta etiquetaNueva = new Etiqueta(etiqueta);
+                MantenimientoEtiqueta.getInstancia().crear(etiquetaNueva);
+                listaEtiquetas.add(etiquetaNueva);
             }
 
         }

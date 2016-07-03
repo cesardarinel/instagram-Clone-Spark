@@ -27,11 +27,12 @@ public class Usuario {
     @Column(name = "DESCRIPCION")
     private String descripcion;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<Post> posts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<Comentario> comentarios = new ArrayList<>();
+
 
 
     public Usuario() {
@@ -104,5 +105,7 @@ public class Usuario {
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
+
+
 }
 

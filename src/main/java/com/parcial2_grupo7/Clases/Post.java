@@ -32,10 +32,10 @@ public class Post{
     @JoinColumn(name = "USUARIO_ID")
     private Usuario usuario;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comentario> comentarios = new ArrayList<>();
 
-    @ManyToMany (fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @ManyToMany (fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinTable(name = "POST_ETIQUETA",joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "ETIQUETA_ID")})
     private List<Etiqueta> etiquetas = new ArrayList<>();
 
