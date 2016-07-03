@@ -245,7 +245,7 @@ ul {/* Remove list bullets */
     margin: 0;
 }
 a:link, a:visited {
-    color: white;
+    color: #2aabd2;
     text-decoration: none;
     display: inline-block;
 }

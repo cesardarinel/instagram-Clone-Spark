@@ -26,14 +26,22 @@
     <ul class="timeline">
     <#list posts as post>
     <li>
-        <div class="avatar">
-            <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
-        </div>
+
     <div class="bubble-container">
     <div class="bubble">
     <div class="retweet">
-        <span style="float: left">Publicado el: ${post.getFecha()}</span>
+        <div>
 
+        <div style="float: left" class="avatar">
+            <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
+        </div>
+        <h3><a href="usuario/${post.getUsuario().getUsername()}">${post.getUsuario().getUsername()}</a></h3>
+            <span style="float: right;">Publicado el: ${post.getFecha()}</span>
+        </div>
+
+
+    </div>
+        <img src="images/${post.getImagen()}" width="600" height="600"><br/>
         <#if usuario.getUsername()== post.getUsuario().getUsername() >
             <form action="/eliminarpost/${post.getId()}">
                 <input style="float: right" type="submit" value="Eliminar">
@@ -43,9 +51,6 @@
             </form>
 
         </#if>
-
-    </div>
-        <img src="images/${post.getImagen()}" width="600" height="600"><br/>
         <h3>${post.getCuerpo()}</h3>
     <#list post.getEtiquetas() as etiqueta>
         <span>#${etiqueta.getEtiqueta()} </span>
