@@ -1,7 +1,7 @@
 <#include "*/head/head.ftl">
 <body>
 <header>
-    <img src="/images/mountains.jpg" alt="Mountains">
+    <img src="/${usuario.getImagen()}" alt="Imagen de perfil">
     <div class="name fancy-font">
         <a href="/home">Clone-Instagram</a>
     </div>
@@ -25,7 +25,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="photo-box">
                                 <div class="image-wrap">
-                                    <img src="/images/${post.getImagen()}">
+                                    <img src="/${post.getImagen()}">
                                     <div class="likes">${post.getLikes()}</div>
                                 </div>
                                 <div class="description">

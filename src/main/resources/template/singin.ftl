@@ -64,7 +64,11 @@
                                     </div>
                                 </div>
                             </form>
-                            <form id="register-form" action="/register" method="post" role="form" style="display: none;">
+                            <form id="register-form" enctype="multipart/form-data" action="/register" method="post" role="form" style="display: none;">
+                                <div class="form-group">
+                                    <label for="upfile">Imagen de perfil:</label>
+                                    <input type="file" name="upfile" tabindex="1"  class="form-control" accept="image/*"><br>
+                                </div>
                                 <div class="form-group">
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="${username!}">
                                 </div>

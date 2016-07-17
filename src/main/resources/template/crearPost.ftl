@@ -6,7 +6,7 @@
                 <div class="form-group">
 
                     <label for="upfile">Imagen:</label>
-                    <input type="file" name="upfile"><br>
+                    <input type="file" name="upfile" accept="image/*"><br>
 
                 </div>
 

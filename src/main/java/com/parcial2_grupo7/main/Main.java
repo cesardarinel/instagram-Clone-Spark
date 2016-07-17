@@ -4,29 +4,21 @@ import com.parcial2_grupo7.Clases.Comentario;
 import com.parcial2_grupo7.Clases.Etiqueta;
 import com.parcial2_grupo7.Clases.Post;
 import com.parcial2_grupo7.Servicios.*;
-import com.parcial2_grupo7.main.Filtro;
 import com.parcial2_grupo7.Clases.Usuario;
 import freemarker.template.Configuration;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import spark.ModelAndView;
 import spark.Session;
-import spark.staticfiles.StaticFiles;
 import spark.template.freemarker.FreeMarkerEngine;
-
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.http.Part;
+import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
-
-
 import java.time.LocalDate;
 import java.util.*;
-
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
@@ -44,6 +36,11 @@ public class Main {
         configuration.setClassForTemplateLoading(Main.class, "/template");
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
 
+        //variables para manejo de imagenes
+        File uploadDir = new File("upload");
+        uploadDir.mkdir(); // create the upload directory if it doesn't exist
+        externalStaticFileLocation("upload");
+
         //iniciamos la base de datos
         try {
             BaseDatos.startDb();
@@ -56,7 +53,6 @@ public class Main {
         get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            //TODO modificar plantilla home/index
             return new ModelAndView(attributes, "index.ftl");
         }, freeMarkerEngine);
         get("/home", (request, response) -> {
@@ -79,7 +75,7 @@ public class Main {
 
             Usuario usuario = (Usuario) MantenimientoUsuario.getInstancia().getEntityManager().createQuery("SELECT U FROM Usuario U WHERE U.username='" + request.params("username") + "'").getSingleResult();
             System.out.println(usuario.getUsername());
-            List<Post> listaPostUsuario = MantenimientoPost.getInstancia().getEntityManager().createQuery("SELECT P FROM Post P WHERE P.usuario='" + usuario.getUsername() + "'").getResultList();
+            List<Post> listaPostUsuario = usuario.getPosts();
             System.out.println(listaPostUsuario.size());
             Collections.reverse(listaPostUsuario);
             attributes.put("posts", listaPostUsuario);
@@ -135,23 +131,30 @@ public class Main {
         post("/register", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             String error = null;
-            try {
-                if (!request.queryParams("username").equals(null)) {/*|| request.queryParams("email") == null
-                    || request.queryParams("password") == null|| request.queryParams("password2") == null){*/
-                    Usuario usuario = new Usuario();
-                    usuario.setPassword(request.queryParams("password"));
-                    usuario.setUsername(request.queryParams("username"));
-                    usuario.setDescripcion(request.queryParams("descripcion"));
-                    usuario.setEmail(request.queryParams("email"));
-                    MantenimientoUsuario.getInstancia().crear(usuario);
-                    response.redirect("/login?r=1");
-                    halt();
-                } else {
-                    error = "Error guardando";
-                }
-            } catch (Exception e) {
-                error = "exception error";
-            }
+                    Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
+                    request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+                    try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
+                        // Use the input stream to create a file
+                        Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
+                        try {
+                            if (!request.queryParams("username").equals(null)) {
+                                Usuario usuario = new Usuario();
+                                usuario.setImagen(tempFile.getFileName().toString());
+                                usuario.setPassword(request.queryParams("password"));
+                                usuario.setUsername(request.queryParams("username"));
+                                usuario.setDescripcion(request.queryParams("descripcion"));
+                                usuario.setEmail(request.queryParams("email"));
+                                MantenimientoUsuario.getInstancia().crear(usuario);
+                                response.redirect("/login?r=1");
+                                halt();
+                            } else {
+                                error = "Error guardando";
+                            }
+                        } catch (Exception e) {
+                            error = "exception error";
+                        }
+                    }
+
 
             attributes.put("error", error);
             attributes.put("username", request.queryParams("username"));
@@ -170,57 +173,31 @@ public class Main {
 
         post("/crearpost", "multipart/form-data", (request, response) -> {
 
-            //TODO Crear el post y guardalo en la base de datos
-            //TODO cambiar direccion en donde se van a guardar las fotos
             //TODO Crear restrincion para que solo se pueda subir fotos
 
             //CODIGO PARA GUARDAR LA IMAGEN
             //- Servlet 3.x config
-            String location = "src\\main\\resources\\Recursos\\images\\";  // the directory location where files will be stored
-            long maxFileSize = 100000000;  // the maximum size allowed for uploaded files
-            long maxRequestSize = 100000000;  // the maximum size allowed for multipart/form-data requests
-            int fileSizeThreshold = 1024;  // the size threshold after which files will be written to disk
-            MultipartConfigElement multipartConfigElement = new MultipartConfigElement(location, maxFileSize, maxRequestSize, fileSizeThreshold);
-            request.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
+            Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
+            request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+            try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
+                // Use the input stream to create a file
+                Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
 
-            /*
-            Collection<Part> parts = request.raw().getParts();
-            for(Part part : parts) {
-                System.out.println("Filename:");
-                System.out.println(part.getSubmittedFileName());
-            }*/
+                String etiquetasStr = request.queryParams("etiquetas");
+                String etiquetas[] = etiquetasStr.split("\\s*,\\s*");
+                Usuario usuario = request.session().attribute("usuario");
+                Post post = new Post();
+                post.setUsuario(usuario);
+                post.setCuerpo(request.queryParams("contenido"));
+                List<Etiqueta> listaEtiquetas = creacionEtiquetas(etiquetas);
+                post.setEtiquetas(listaEtiquetas);
+                post.setFecha(LocalDate.now());
+                post.setImagen(tempFile.getFileName().toString());
 
-            String fName = request.raw().getPart("upfile").getSubmittedFileName();
-            System.out.println("File: " + fName);
-
-            Part uploadedFile = request.raw().getPart("upfile");
-            Path out = Paths.get(location + fName);
-
-            try (final InputStream in = uploadedFile.getInputStream()) {
-                Files.copy(in, out);
-                uploadedFile.delete();
+                MantenimientoPost.getInstancia().crear(post);
+                response.redirect("/home");
             }
-            // cleanup
-            multipartConfigElement = null;
-            // parts = null;
-            uploadedFile = null;
-
-            String etiquetasStr = request.queryParams("etiquetas");
-            String etiquetas[] = etiquetasStr.split("\\s*,\\s*");
-            Usuario usuario = request.session().attribute("usuario");
-            Post post = new Post();
-            post.setUsuario(usuario);
-            post.setCuerpo(request.queryParams("contenido"));
-            List<Etiqueta> listaEtiquetas = creacionEtiquetas(etiquetas);
-            post.setEtiquetas(listaEtiquetas);
-            post.setFecha(LocalDate.now());
-            post.setImagen(fName);
-
-            MantenimientoPost.getInstancia().crear(post);
-
-
-            response.redirect("/home");
-            return "";
+            return "File uploaded";
         });
 
         post("/crearcomentario", (request, response) -> {

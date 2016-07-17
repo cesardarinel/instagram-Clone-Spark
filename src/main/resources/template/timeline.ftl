@@ -14,7 +14,7 @@
 <span class="first"> 
 
     <div class="avatar" style="float: left">
-                <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
+                <img src="${usuario.getImagen()}">
             </div>
     <div>
            <span style="float: left"><a href="usuario/${usuario.getUsername()}">${usuario.getUsername()}</a></span>
@@ -41,7 +41,7 @@
 
 
     </div>
-        <img src="images/${post.getImagen()}" width="600" height="600"><br/>
+        <img src="${post.getImagen()}" width="600" height="600"><br/>
         <#if usuario.getUsername()== post.getUsuario().getUsername() >
             <form action="/eliminarpost/${post.getId()}">
                 <input style="float: right" type="submit" value="Eliminar">

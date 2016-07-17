@@ -5,8 +5,10 @@
         <strong>Error:</strong> ${error}
     </div>
     </#if>
-<form action="/register" method="post">
+<form action="/register" method="post" enctype="multipart/form-data">
     <dl>
+        <dt>Imagen de Perfil:</dt>
+        <dd><input type="file" name="upfile" accept="image/*"><br></dd>
         <dt>Username:
         <dd><input type="text" name="username" maxlength="50" size="30" value="${username!}">
         <dt>E-Mail:
