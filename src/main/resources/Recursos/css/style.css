@@ -20,6 +20,12 @@ header {
   height: 600px;
   overflow: hidden;
 }
+
+.headerTimeline {
+  max-height: 100px;
+  height: 100px;
+  overflow: hidden;
+}
 header img {
   position: fixed;
   top: 0px;
@@ -101,6 +107,7 @@ header .fancy-font {
   padding: 50px 0;
   color: #bbbbbb;
 }
+
 .instagram-content .photo-box {
   margin: 0 0 30px 0;
 }
@@ -123,7 +130,57 @@ header .fancy-font {
   color: #9b9b9b;
   letter-spacing: 1px;
   padding: 15px;
-  height: 75px;
+  height: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.instagram-content .photo-box .header {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    background: #FFF;
+    color: #9b9b9b;
+    letter-spacing: 1px;
+    padding: 15px;
+    height: auto;
+    margin-top: 1%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.instagram-content .photo-box .header .username {
+  font-size: 17px;
+  color: #FFF;
+}
+.instagram-content .photo-box .header .avatar {
+  width: 5%;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  overflow: hidden;
+  margin-left: 2%;
+}
+.instagram-content .photo-box .header .avatar img {
+  width: 100%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 5px solid #ecf0f1;
+  position: relative;
+}
+
+.instagram-content .photo-box .comentarios {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  background: #FFF;
+  color: #9b9b9b;
+  margin-top: 1%;
+  letter-spacing: 1px;
+  padding: 15px;
+  height: auto;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

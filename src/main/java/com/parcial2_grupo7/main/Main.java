@@ -67,7 +67,7 @@ public class Main {
             attributes.put("usuario", usuario);
 
 
-            return new ModelAndView(attributes, "timeline.ftl");
+            return new ModelAndView(attributes, "timelinevs2.ftl");
         }, freeMarkerEngine);
 
         get("/usuario/:username", (request, response) -> {
