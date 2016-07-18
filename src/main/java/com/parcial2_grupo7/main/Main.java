@@ -84,6 +84,21 @@ public class Main {
 
             return new ModelAndView(attributes, "usuario.ftl");
         }, freeMarkerEngine);
+
+        get("/usuario/:username/:post_id", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            Usuario usuario = (Usuario) MantenimientoUsuario.getInstancia().getEntityManager().createQuery("SELECT U FROM Usuario U WHERE U.username='" + request.params("username") + "'").getSingleResult();
+            List<Post> listaPostUsuario = usuario.getPosts();
+            Post post = MantenimientoPost.getInstancia().find(Integer.parseInt(request.params("post_id")));
+            System.out.println(listaPostUsuario.size());
+            Collections.reverse(listaPostUsuario);
+            attributes.put("post", post);
+            attributes.put("usuario", usuario);
+
+
+            return new ModelAndView(attributes, "vistaprevia.ftl");
+        }, freeMarkerEngine);
         /**
          * Login
          */

@@ -11,6 +11,7 @@
     </div>
 
 </header>
+
 <section class="instagram-wrap">
     <div class="container">
         <div class="row">
@@ -25,7 +26,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="photo-box">
                                 <div class="image-wrap">
-                                    <img src="/${post.getImagen()}">
+                                    <a href="/usuario/${usuario.getUsername()}/${post.getId()}"><img src="/${post.getImagen()}"></a>
                                     <div class="likes">${post.getLikes()}</div>
                                 </div>
                                 <div class="description">
