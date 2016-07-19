@@ -1,6 +1,6 @@
  ##**Informe:**
 - Versión: 0.0.5
-- 35% completados
+- 50% completados
 
 # instagram-Clone-Spark
 ----------
