@@ -9,6 +9,8 @@ import freemarker.template.Configuration;
 import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
+
+import javax.activation.MimetypesFileTypeMap;
 import javax.persistence.NoResultException;
 import javax.servlet.MultipartConfigElement;
 import java.io.File;
@@ -19,6 +21,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
+
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
@@ -75,30 +78,86 @@ public class Main {
 
             Usuario usuario = (Usuario) MantenimientoUsuario.getInstancia().getEntityManager().createQuery("SELECT U FROM Usuario U WHERE U.username='" + request.params("username") + "'").getSingleResult();
             System.out.println(usuario.getUsername());
+            Usuario userInSesion = request.session().attribute("usuario");
             List<Post> listaPostUsuario = usuario.getPosts();
             System.out.println(listaPostUsuario.size());
             Collections.reverse(listaPostUsuario);
             attributes.put("posts", listaPostUsuario);
             attributes.put("usuario", usuario);
+            attributes.put("usuarioEnSesion", userInSesion);
 
 
             return new ModelAndView(attributes, "usuario.ftl");
         }, freeMarkerEngine);
 
+        //todo hacerlo tipo modal.
         get("/usuario/:username/:post_id", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            Usuario usuario = (Usuario) MantenimientoUsuario.getInstancia().getEntityManager().createQuery("SELECT U FROM Usuario U WHERE U.username='" + request.params("username") + "'").getSingleResult();
-            List<Post> listaPostUsuario = usuario.getPosts();
+            Usuario usuarioSesion = request.session().attribute("usuario");
             Post post = MantenimientoPost.getInstancia().find(Integer.parseInt(request.params("post_id")));
-            System.out.println(listaPostUsuario.size());
-            Collections.reverse(listaPostUsuario);
+            //Todo Bug muestra 4 veces el mismo comentario
+            System.out.println(post.getComentarios().size());
             attributes.put("post", post);
-            attributes.put("usuario", usuario);
+            attributes.put("usuarioEnSesion", usuarioSesion);
 
 
             return new ModelAndView(attributes, "vistaprevia.ftl");
         }, freeMarkerEngine);
+
+        get("/editarcuenta", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario usuario = request.session().attribute("usuario");
+            attributes.put("usuario", usuario);
+
+            attributes.put("upfile", usuario.getImagen());
+            attributes.put("descripcion", usuario.getDescripcion());
+            attributes.put("email", usuario.getEmail());
+            attributes.put("password", usuario.getPassword());
+            attributes.put("password2", "");
+
+
+            return new ModelAndView(attributes, "editarcuenta.ftl");
+        }, freeMarkerEngine);
+
+        post("/editarcuenta", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            String error = null;
+            Usuario usuario = request.session().attribute("usuario");
+            Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
+            request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+            try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
+                // Use the input stream to create a file
+                Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
+                String mimetype = new MimetypesFileTypeMap().getContentType(tempFile.toFile());
+                String type = mimetype.split("/")[0];
+                if (type.equals("image")) {
+                    if (request.queryParams("password").equals(request.queryParams("password2"))) {
+                        usuario.setPassword(request.queryParams("password"));
+                        System.out.println(request.raw().getPart("upfile").getInputStream().read());
+                        if (request.raw().getPart("upfile").getInputStream().read() != -1) {
+                            usuario.setImagen(tempFile.getFileName().toString());
+                        }
+                        usuario.setDescripcion(request.queryParams("descripcion"));
+                        usuario.setEmail(request.queryParams("email"));
+
+                    } else {
+                        halt("Contraseña no coincide <a href=\"/editarcuenta\">Volver</a>");
+                    }
+                } else {
+                    halt("El archivo no es una imagen <a href=\"/editarcuenta\">Volver</a>");
+                }
+
+                MantenimientoUsuario.getInstancia().editar(usuario);
+
+                response.redirect("usuario/" + usuario.getUsername());
+                attributes.put("usuario", usuario);
+
+            }
+
+            return new ModelAndView(attributes, "editarcuenta.ftl");
+        }, freeMarkerEngine);
+
         /**
          * Login
          */
@@ -146,29 +205,36 @@ public class Main {
         post("/register", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             String error = null;
-                    Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
-                    request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-                    try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
-                        // Use the input stream to create a file
-                        Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
-                        try {
-                            if (!request.queryParams("username").equals(null)) {
-                                Usuario usuario = new Usuario();
-                                usuario.setImagen(tempFile.getFileName().toString());
-                                usuario.setPassword(request.queryParams("password"));
-                                usuario.setUsername(request.queryParams("username"));
-                                usuario.setDescripcion(request.queryParams("descripcion"));
-                                usuario.setEmail(request.queryParams("email"));
-                                MantenimientoUsuario.getInstancia().crear(usuario);
-                                response.redirect("/login?r=1");
-                                halt();
-                            } else {
-                                error = "Error guardando";
-                            }
-                        } catch (Exception e) {
-                            error = "exception error";
+            Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
+            request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+
+            try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
+                // Use the input stream to create a file
+                Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
+                try {
+                    if (!request.queryParams("username").equals(null)) {
+                        String mimetype = new MimetypesFileTypeMap().getContentType(tempFile.toFile());
+                        String type = mimetype.split("/")[0];
+                        if (type.equals("image")) {
+                            Usuario usuario = new Usuario();
+                            usuario.setImagen(tempFile.getFileName().toString());
+                            usuario.setPassword(request.queryParams("password"));
+                            usuario.setUsername(request.queryParams("username"));
+                            usuario.setDescripcion(request.queryParams("descripcion"));
+                            usuario.setEmail(request.queryParams("email"));
+                            MantenimientoUsuario.getInstancia().crear(usuario);
+                            response.redirect("/login?r=1");
+                            halt();
+                        } else {
+                            halt("El archivo no es una imagen");
                         }
+                    } else {
+                        error = "Error guardando";
                     }
+                } catch (Exception e) {
+                    error = "exception error";
+                }
+            }
 
 
             attributes.put("error", error);
@@ -188,7 +254,6 @@ public class Main {
 
         post("/crearpost", "multipart/form-data", (request, response) -> {
 
-            //TODO Crear restrincion para que solo se pueda subir fotos
 
             //CODIGO PARA GUARDAR LA IMAGEN
             //- Servlet 3.x config
@@ -198,20 +263,28 @@ public class Main {
                 // Use the input stream to create a file
                 Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
 
-                String etiquetasStr = request.queryParams("etiquetas");
-                String etiquetas[] = etiquetasStr.split("\\s*,\\s*");
-                Usuario usuario = request.session().attribute("usuario");
-                Post post = new Post();
-                post.setUsuario(usuario);
-                post.setCuerpo(request.queryParams("contenido"));
-                List<Etiqueta> listaEtiquetas = creacionEtiquetas(etiquetas);
-                post.setEtiquetas(listaEtiquetas);
-                post.setFecha(LocalDate.now());
-                post.setImagen(tempFile.getFileName().toString());
+                String mimetype = new MimetypesFileTypeMap().getContentType(tempFile.toFile());
+                String type = mimetype.split("/")[0];
+                if (type.equals("image")) {
+                    System.out.println("It's an image");
+                    String etiquetasStr = request.queryParams("etiquetas");
+                    String etiquetas[] = etiquetasStr.split("\\s*,\\s*");
+                    Usuario usuario = request.session().attribute("usuario");
+                    Post post = new Post();
+                    post.setUsuario(usuario);
+                    post.setCuerpo(request.queryParams("contenido"));
+                    List<Etiqueta> listaEtiquetas = creacionEtiquetas(etiquetas);
+                    post.setEtiquetas(listaEtiquetas);
+                    post.setFecha(LocalDate.now());
+                    post.setImagen(tempFile.getFileName().toString());
 
-                MantenimientoPost.getInstancia().crear(post);
-                response.redirect("/home");
+                    MantenimientoPost.getInstancia().crear(post);
+                    response.redirect("/home");
+                } else {
+                    halt("El archivo no es una imagen");
+                }
             }
+
             return "File uploaded";
         });
 
@@ -242,9 +315,11 @@ public class Main {
             int id_post = Integer.parseInt(request.params("id_post"));
             Post post = MantenimientoPost.getInstancia().find(id_post);
             String etiquetasstr = "";
+            System.out.println(post.getEtiquetas().size());
             for (Etiqueta s : post.getEtiquetas()) {
                 etiquetasstr += s.getEtiqueta() + ", ";
             }
+            System.out.println(etiquetasstr);
 
             attributes.put("post", post);
             attributes.put("stringEtiquetas", etiquetasstr);
@@ -301,10 +376,10 @@ public class Main {
     public static List<Etiqueta> creacionEtiquetas(String[] etiquetas) {
         List<Etiqueta> listaEtiquetas = new ArrayList<Etiqueta>();
         for (String etiqueta : etiquetas) {
-            try{
+            try {
                 Etiqueta etiquetaExistente = (Etiqueta) MantenimientoEtiqueta.getInstancia().getEntityManager().createQuery("SELECT E FROM Etiqueta E WHERE E.etiqueta='" + etiqueta + "'").getSingleResult();
                 listaEtiquetas.add(etiquetaExistente);
-            }catch (NoResultException e){
+            } catch (NoResultException e) {
                 Etiqueta etiquetaNueva = new Etiqueta(etiqueta);
                 MantenimientoEtiqueta.getInstancia().crear(etiquetaNueva);
                 listaEtiquetas.add(etiquetaNueva);

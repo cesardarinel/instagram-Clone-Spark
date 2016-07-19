@@ -161,6 +161,24 @@ header .fancy-font {
   overflow: hidden;
   margin-left: 2%;
 }
+.avatar {
+  width: 10%;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  overflow: hidden;
+  margin-left: 2%;
+}
+.avatar img {
+  width: 100%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 5px solid #ecf0f1;
+  position: relative;
+}
 .instagram-content .photo-box .header .avatar img {
   width: 100%;
   -webkit-border-radius: 50%;

@@ -13,9 +13,9 @@
                                 <div class="header">
                                     <div class="username">
                                         <div class="avatar">
-                                            <img src="/${post.getUsuario().getImagen()}">
+                                            <img src="/${post.getUsuario().getImagen()!}">
                                         </div>
-                                        <a href="usuario/${post.getUsuario().getUsername()}">${post.getUsuario().getUsername()}</a>
+                                        <a href="/usuario/${post.getUsuario().getUsername()}">${post.getUsuario().getUsername()}</a>
                                     </div>
                                 </div>
                                 <div class="image-wrap">
@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="description">
 
-                                    <#if usuario.getUsername()== post.getUsuario().getUsername() >
+                                    <#if usuarioEnSesion.getUsername()== post.getUsuario().getUsername() >
                                         <form action="/eliminarpost/${post.getId()}">
                                             <input style="float: right" type="submit" value="Eliminar">
                                         </form>
@@ -48,7 +48,7 @@
                                     <#list post.getComentarios() as comentario>
                                         <div>
                                             <span><b>${comentario.getUsuario().getUsername()}:</b>${comentario.getComentario()}</span>
-                                            <#if comentario.getUsuario().getUsername()== usuario.getUsername() ||  post.getUsuario().getUsername()== usuario.getUsername() >
+                                            <#if comentario.getUsuario().getUsername()== usuarioEnSesion.getUsername() ||  post.getUsuario().getUsername()== usuarioEnSesion.getUsername() >
                                                 <a style="color: red; float: right" href="/eliminarcomentario/${comentario.getId()}"> <span>eliminar</span></a>
                                             </#if>
                                         </div>

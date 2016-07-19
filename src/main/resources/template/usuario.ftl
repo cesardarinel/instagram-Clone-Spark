@@ -1,10 +1,17 @@
 <#include "*/head/head.ftl">
 <body>
 <header>
-    <img src="/${usuario.getImagen()}" alt="Imagen de perfil">
+    <img src="/${usuario.getImagen()!}" alt="Imagen de perfil">
     <div class="name fancy-font">
         <a href="/home">Clone-Instagram</a>
     </div>
+<#if usuario.getUsername()== usuarioEnSesion.getUsername() >
+    <form action="/editarcuenta">
+        <input style="float: right" type="submit" value="Editar">
+    </form>
+
+</#if>
+
     <div class="titles">
         <h1>Hello! <span>I'm ${usuario.getUsername()}</span></h1>
         <h2>${usuario.getDescripcion()}</h2>

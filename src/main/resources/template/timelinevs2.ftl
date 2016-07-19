@@ -23,7 +23,7 @@
                                 <div class="header">
                                     <div class="username">
                                         <div class="avatar">
-                                            <img src="${post.getUsuario().getImagen()}">
+                                            <img src="${post.getUsuario().getImagen()!}">
                                         </div>
                                         <a href="usuario/${post.getUsuario().getUsername()}">${post.getUsuario().getUsername()}</a>
                                     </div>
