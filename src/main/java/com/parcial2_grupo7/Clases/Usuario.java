@@ -33,6 +33,12 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<Comentario> comentarios = new ArrayList<>();
 
+    @ManyToOne
+    private Usuario usuario;
+    @OneToMany(mappedBy="usuario")
+    private List<Usuario> seguidores;
+
+
 
 
     public Usuario() {
@@ -49,6 +55,21 @@ public class Usuario {
     }
 
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Usuario> getSeguidores() {
+        return seguidores;
+    }
+
+    public void setSeguidores(List<Usuario> seguidores) {
+        this.seguidores = seguidores;
+    }
 
     public String getImagen() {
         return imagen;

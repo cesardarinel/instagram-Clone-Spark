@@ -32,6 +32,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //todo etiquetar amigos en post a los usuarios que son amigos nuestros para luego publicar.
+        //todo tipos de cuentas privadas/publicas
+        //todo followers y follow
+        //todo likes
+        //todo  Asignar un “like” o agregar un comentario debe notificar al usuario dueño de la publicación de dicho evento por la plataforma.
 
         staticFileLocation("/Recursos");
         enableDebugScreen();
@@ -129,7 +134,7 @@ public class Main {
             try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
                 // Use the input stream to create a file
                 Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
-                String mimetype = new MimetypesFileTypeMap().getContentType(tempFile.toFile());
+                String mimetype = request.raw().getPart("upfile").getContentType();
                 String type = mimetype.split("/")[0];
                 if (type.equals("image")) {
                     if (request.queryParams("password").equals(request.queryParams("password2"))) {
@@ -157,6 +162,17 @@ public class Main {
 
             return new ModelAndView(attributes, "editarcuenta.ftl");
         }, freeMarkerEngine);
+
+        get("/usuarios_registrados", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario usuarioSesion = request.session().attribute("usuario");
+            List<Usuario> listaUsuarios = MantenimientoUsuario.getInstancia().findAll();
+            attributes.put("usuarioSesion",usuarioSesion);
+            attributes.put("usuarios", listaUsuarios);
+
+            return new ModelAndView(attributes, "usuariosRegistrados.ftl");
+        }, freeMarkerEngine);
+
 
         /**
          * Login
@@ -211,9 +227,9 @@ public class Main {
             try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
                 // Use the input stream to create a file
                 Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
-                try {
+
                     if (!request.queryParams("username").equals(null)) {
-                        String mimetype = new MimetypesFileTypeMap().getContentType(tempFile.toFile());
+                        String mimetype = request.raw().getPart("upfile").getContentType();
                         String type = mimetype.split("/")[0];
                         if (type.equals("image")) {
                             Usuario usuario = new Usuario();
@@ -231,9 +247,7 @@ public class Main {
                     } else {
                         error = "Error guardando";
                     }
-                } catch (Exception e) {
-                    error = "exception error";
-                }
+
             }
 
 
@@ -263,7 +277,7 @@ public class Main {
                 // Use the input stream to create a file
                 Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
 
-                String mimetype = new MimetypesFileTypeMap().getContentType(tempFile.toFile());
+                String mimetype = request.raw().getPart("upfile").getContentType();
                 String type = mimetype.split("/")[0];
                 if (type.equals("image")) {
                     System.out.println("It's an image");
