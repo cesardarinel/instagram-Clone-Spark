@@ -31,10 +31,10 @@
                         <div class="col-lg-12">
                             <form id="login-form" action="/login" method="post" role="form" style="display: block;">
                                 <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="${username!}">
+                                    <input required type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="${username!}">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    <input required type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                                 </div>
                                 <div class="form-group text-center">
                                     <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -69,20 +69,20 @@
                                     <label for="upfile">Imagen de perfil:</label>
                                     <input type="file" name="upfile" tabindex="1"  class="form-control" accept="image/*"><br>
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="${username!}">
+                                <div class="form-group ">
+                                    <input type="text" required name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="${username!}" >
+                                </div>
+                                <div class="form-group ">
+                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="${email!}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="${email!}">
+                                    <input type="text" name="descripcion" id="descripcion" tabindex="1" class="form-control" placeholder="Sobre ti" value="${descripcion!}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="descripcion" id="descripcion" tabindex="1" class="form-control" placeholder="Sobre ti" value="${descripcion!}">
+                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password " required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password2" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                    <input type="password" name="password2" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">

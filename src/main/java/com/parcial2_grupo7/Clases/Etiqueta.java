@@ -9,17 +9,17 @@ import java.util.List;
  * Created by marti on 22/6/2016.
  */
 @Entity
-@Table (name = "ETIQUETAS")
+@Table (name = "ETIQUETA")
 public class Etiqueta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "ID")
     private int id;
-    @Column(name = "ETIQUETA")
+    @Column(name = "TAG")
     private String etiqueta;
 
-    @ManyToMany(mappedBy = "etiquetas")
+    @ManyToMany(mappedBy = "etiquetas", cascade = CascadeType.MERGE)
     private List<Post> posts = new ArrayList<>();
 
     public Etiqueta() {

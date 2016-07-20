@@ -219,6 +219,7 @@ public class Main {
         }, freeMarkerEngine);
 
         post("/register", (request, response) -> {
+            //TODO validar todos los campos
             Map<String, Object> attributes = new HashMap<>();
             String error = null;
             Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
