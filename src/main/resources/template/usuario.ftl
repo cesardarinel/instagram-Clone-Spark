@@ -15,6 +15,7 @@
     <div class="titles">
         <h1>Hello! <span>I'm ${usuario.getUsername()}</span></h1>
         <h2>${usuario.getDescripcion()}</h2>
+        <h3>Followers:${followers} | Following: ${following} </h3>
     </div>
 
 </header>

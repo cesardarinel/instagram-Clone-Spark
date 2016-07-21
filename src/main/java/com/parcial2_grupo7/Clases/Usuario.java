@@ -42,7 +42,10 @@ public class Usuario {
             inverseJoinColumns={@JoinColumn(name="FOLLOWER_ID")})
     private List<Usuario> followers = new ArrayList<Usuario>();
 
-    @ManyToMany(mappedBy="followers", fetch = FetchType.EAGER)
+    @ManyToMany(cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(name="USER_FOLLOWINGS",
+            joinColumns={@JoinColumn(name="USERNAME")},
+            inverseJoinColumns={@JoinColumn(name="FOLLOWING_ID")})
     private List<Usuario> following = new ArrayList<Usuario>();
 
 

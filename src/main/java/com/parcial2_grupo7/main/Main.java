@@ -75,10 +75,9 @@ public class Main {
             Map<String, Object> attributes = new HashMap<>();
 
             Usuario usuario = request.session().attribute("usuario");
-            Usuario n = MantenimientoUsuario.getInstancia().find("leonardo");
             ArrayList<Usuario> users = new ArrayList<Usuario>();
-            List<Usuario> followers =  n.getFollowers();
-            List<Usuario> following =  n.getFollowing();
+            List<Usuario> followers =  usuario.getFollowers();
+            List<Usuario> following =  usuario.getFollowing();
 
             List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
             Collections.reverse(listaPost);
@@ -92,12 +91,16 @@ public class Main {
 
             Usuario usuario = (Usuario) MantenimientoUsuario.getInstancia().getEntityManager().createQuery("SELECT U FROM Usuario U WHERE U.username='" + request.params("username") + "'").getSingleResult();
             System.out.println(usuario.getUsername());
+            int followers =  usuario.getFollowers().size();
+            int following = usuario.getFollowing().size();
             Usuario userInSesion = request.session().attribute("usuario");
             List<Post> listaPostUsuario = usuario.getPosts();
             System.out.println(listaPostUsuario.size());
             Collections.reverse(listaPostUsuario);
             attributes.put("posts", listaPostUsuario);
             attributes.put("usuario", usuario);
+            attributes.put("followers", followers);
+            attributes.put("following", following);
             attributes.put("usuarioEnSesion", userInSesion);
 
 
@@ -176,8 +179,10 @@ public class Main {
             Map<String, Object> attributes = new HashMap<>();
             Usuario usuarioSesion = request.session().attribute("usuario");
             List<Usuario> listaUsuarios = MantenimientoUsuario.getInstancia().findAll();
+            List<Usuario> following = usuarioSesion.getFollowing();
             attributes.put("usuarioSesion",usuarioSesion);
             attributes.put("usuarios", listaUsuarios);
+            attributes.put("followings", following);
 
             return new ModelAndView(attributes, "usuariosRegistrados.ftl");
         }, freeMarkerEngine);
@@ -360,7 +365,6 @@ public class Main {
             String etiquetas[] = str.split("\\s*,\\s*");
             int id = Integer.parseInt(request.queryParams("id"));
 
-
             Post post = MantenimientoPost.getInstancia().find(id);
             post.setCuerpo(contenido);
             post.setEtiquetas(creacionEtiquetas(etiquetas));
@@ -370,7 +374,30 @@ public class Main {
             return "";
 
         });
+        get("/agregar_usuario", (request, response) -> {
 
+
+            Map<String, Object> attributes = new HashMap<>();
+
+            String id_usuario = request.queryParams("id");
+            System.out.println(id_usuario);
+            Usuario usuarioSesion = request.session().attribute("usuario");
+            Usuario usuario = MantenimientoUsuario.getInstancia().find(id_usuario);
+
+            if(!usuarioSesion.getFollowing().contains(usuario)){
+                List<Usuario> usuarioSesionFollowings = usuarioSesion.getFollowing();
+                List<Usuario> usuarioFollowers = usuario.getFollowers();
+                usuarioSesionFollowings.add(usuario);
+                usuarioFollowers.add(usuarioSesion);
+                MantenimientoUsuario.getInstancia().editar(usuarioSesion);
+            }
+
+
+
+            response.redirect("/home");
+
+            return "";
+        });
         get("/eliminarpost/:id_post", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 

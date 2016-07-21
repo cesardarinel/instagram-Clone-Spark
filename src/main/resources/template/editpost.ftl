@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <form method="post" action="/editarpost">
+            <form method="post" action="/editarpost}">
 
                 <div class="form-group">
                     <label>Contenido</label>
