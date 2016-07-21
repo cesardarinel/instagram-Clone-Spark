@@ -6,6 +6,7 @@ import com.parcial2_grupo7.Clases.Post;
 import com.parcial2_grupo7.Servicios.*;
 import com.parcial2_grupo7.Clases.Usuario;
 import freemarker.template.Configuration;
+import org.hibernate.Hibernate;
 import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -58,23 +59,31 @@ public class Main {
         Filtro ft = new Filtro();
         ft.aplicarFiltros();
 
+
         get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
+            if(request.session().attribute("usuario") != null){
+                response.redirect("/home");
+
+            }
             return new ModelAndView(attributes, "index.ftl");
         }, freeMarkerEngine);
+
+
         get("/home", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-
             Usuario usuario = request.session().attribute("usuario");
-            System.out.println(usuario.getUsername());
+            Usuario n = MantenimientoUsuario.getInstancia().find("leonardo");
+            ArrayList<Usuario> users = new ArrayList<Usuario>();
+            List<Usuario> followers =  n.getFollowers();
+            List<Usuario> following =  n.getFollowing();
+
             List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
             Collections.reverse(listaPost);
             attributes.put("posts", listaPost);
             attributes.put("usuario", usuario);
-
-
             return new ModelAndView(attributes, "timelinevs2.ftl");
         }, freeMarkerEngine);
 
@@ -403,4 +412,8 @@ public class Main {
         }
         return listaEtiquetas;
     }
+
+
+
+
 }

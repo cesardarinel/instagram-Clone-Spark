@@ -33,7 +33,7 @@ header img {
   margin-left: -600px;
   width: 1200px;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 600px) {
   header img {
     top: auto;
     left: auto;

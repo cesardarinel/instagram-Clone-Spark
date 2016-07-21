@@ -1,9 +1,12 @@
 package com.parcial2_grupo7.Clases;
 
+import com.parcial2_grupo7.Servicios.MantenimientoUsuario;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +16,6 @@ import java.util.Set;
 @Entity
 @Table (name = "USUARIOS")
 public class Usuario {
-
 
     @Id
     @Column(name = "USERNAME")
@@ -33,12 +35,15 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<Comentario> comentarios = new ArrayList<>();
 
-    @ManyToOne
-    private Usuario usuario;
-    @OneToMany(mappedBy="usuario")
-    private List<Usuario> seguidores;
 
+    @ManyToMany(cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(name="USER_FOLLOWERS",
+            joinColumns={@JoinColumn(name="USERNAME")},
+            inverseJoinColumns={@JoinColumn(name="FOLLOWER_ID")})
+    private List<Usuario> followers = new ArrayList<Usuario>();
 
+    @ManyToMany(mappedBy="followers", fetch = FetchType.EAGER)
+    private List<Usuario> following = new ArrayList<Usuario>();
 
 
     public Usuario() {
@@ -54,8 +59,13 @@ public class Usuario {
         this.comentarios = comentarios;
     }
 
+    public Usuario( String imagen, String username) {
+        this.imagen = imagen;
+        this.username = username;
+    }
 
-    public Usuario getUsuario() {
+
+    /*public Usuario getUsuario() {
         return usuario;
     }
 
@@ -69,6 +79,24 @@ public class Usuario {
 
     public void setSeguidores(List<Usuario> seguidores) {
         this.seguidores = seguidores;
+    }*/
+
+    public List<Usuario> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<Usuario> followers) {
+        this.followers = followers;
+    }
+
+    public List<Usuario> getFollowing() {
+        //EntityManager em = MantenimientoUsuario.getInstancia().getEntityManager();
+        //Set<Usuario> following2 = (Set<Usuario>) em.createQuery("SELECT U FROM USER_FOLLOWERS WHERE FOLLOWER_ID = "+this.getUsername());
+        return following;
+    }
+
+    public void setFollowing(List<Usuario> following) {
+        this.following = following;
     }
 
     public String getImagen() {
