@@ -35,7 +35,6 @@ public class Main {
 
         //todo etiquetar amigos en post a los usuarios que son amigos nuestros para luego publicar.
         //todo tipos de cuentas privadas/publicas
-        //todo followers y follow
         //todo likes
         //todo  Asignar un “like” o agregar un comentario debe notificar al usuario dueño de la publicación de dicho evento por la plataforma.
 
@@ -76,12 +75,33 @@ public class Main {
 
             Usuario usuario = request.session().attribute("usuario");
             ArrayList<Usuario> users = new ArrayList<Usuario>();
-            List<Usuario> followers =  usuario.getFollowers();
-            List<Usuario> following =  usuario.getFollowing();
-
+            List<Usuario> followings =  usuario.getFollowing();
             List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
-            Collections.reverse(listaPost);
-            attributes.put("posts", listaPost);
+            List<Post> listaFollowing = new ArrayList<Post>();
+            for(Post post: listaPost){
+                System.out.println("Entre al loop donde estan todos los post");
+                if(followings.size()==0){
+                    if (post.getUsuario().getUsername().equals(usuario.getUsername())){
+                        listaFollowing.add(post);
+                    }
+                }else{
+                    for(Usuario following: followings){
+                        System.out.println("Entre al loop donde estan todos los following");
+                        System.out.println("Cantidad de following: " +followings.size());
+                        System.out.println("Following actual: " + following.getUsername());
+                        System.out.println("Usuario del Post: " + post.getUsuario().getUsername());
+                        if (post.getUsuario().getUsername().equals(following.getUsername()) || post.getUsuario().getUsername().equals(usuario.getUsername())){
+                            listaFollowing.add(post);
+                            break;
+                        }
+                    }
+                }
+
+
+            }
+            System.out.println("Listados de post en el timeline: "+listaFollowing.size());
+            Collections.reverse(listaFollowing);
+            attributes.put("posts", listaFollowing);
             attributes.put("usuario", usuario);
             return new ModelAndView(attributes, "timelinevs2.ftl");
         }, freeMarkerEngine);
@@ -179,10 +199,27 @@ public class Main {
             Map<String, Object> attributes = new HashMap<>();
             Usuario usuarioSesion = request.session().attribute("usuario");
             List<Usuario> listaUsuarios = MantenimientoUsuario.getInstancia().findAll();
-            List<Usuario> following = usuarioSesion.getFollowing();
+            List<Usuario> followings = usuarioSesion.getFollowing();
+            System.out.println("Cantidad de followings: " + followings.size());
+            for (Usuario usuario: listaUsuarios){
+                System.out.println("Usuario: " + usuario.getUsername());
+                for(Usuario following: followings){
+                    System.out.println("Following: " + following.getUsername());
+                    if(usuario.getUsername().equals(following.getUsername())){
+                        System.out.println("Unfollow");
+                        break;
+                    }else{
+                        System.out.println("Follow");
+                        break;
+                    }
+
+                }
+            }
+
             attributes.put("usuarioSesion",usuarioSesion);
             attributes.put("usuarios", listaUsuarios);
-            attributes.put("followings", following);
+            attributes.put("followings", followings);
+
 
             return new ModelAndView(attributes, "usuariosRegistrados.ftl");
         }, freeMarkerEngine);
@@ -390,9 +427,8 @@ public class Main {
                 usuarioSesionFollowings.add(usuario);
                 usuarioFollowers.add(usuarioSesion);
                 MantenimientoUsuario.getInstancia().editar(usuarioSesion);
+                MantenimientoUsuario.getInstancia().editar(usuario);
             }
-
-
 
             response.redirect("/home");
 

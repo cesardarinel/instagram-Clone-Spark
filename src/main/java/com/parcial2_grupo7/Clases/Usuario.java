@@ -36,16 +36,13 @@ public class Usuario {
     private List<Comentario> comentarios = new ArrayList<>();
 
 
-    @ManyToMany(cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="USER_FOLLOWERS",
             joinColumns={@JoinColumn(name="USERNAME")},
             inverseJoinColumns={@JoinColumn(name="FOLLOWER_ID")})
     private List<Usuario> followers = new ArrayList<Usuario>();
 
-    @ManyToMany(cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinTable(name="USER_FOLLOWINGS",
-            joinColumns={@JoinColumn(name="USERNAME")},
-            inverseJoinColumns={@JoinColumn(name="FOLLOWING_ID")})
+    @ManyToMany(mappedBy="followers", fetch = FetchType.EAGER)
     private List<Usuario> following = new ArrayList<Usuario>();
 
 

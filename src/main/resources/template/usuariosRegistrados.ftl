@@ -28,24 +28,35 @@
                                             <a href="usuario/${usuario.getUsername()}"><h4>${usuario.getUsername()}</h4></a>
                                         </div>
 
-                                        <div style="float: right">
+                                        <div>
+
                                             <#if usuario.getUsername()!= usuarioSesion.getUsername() >
+                                                <#assign x = 0>
                                                 <#list followings as following>
-                                                    <#if following.getUsername()== usuario.getUsername() >
+                                                     <#if usuario.getUsername() == following.getUsername()>
                                                         <form action="/unfollow_usuario">
-                                                            <input type="submit" value="Unfollow">
+                                                            <input type="submit" value="Unfollow" style="float: right">
+                                                            <input type="hidden" value="${usuario.getUsername()}" name="id" />
+                                                        </form>
+                                                         <#assign x = 1>
+                                                        <#break >
+                                                    </#if>
+                                                    <#else>
+                                                        <form action="/agregar_usuario">
+                                                            <input type="submit" value="Follow" style="float: right">
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                         </form>
 
-                                                     </#if>
                                                 </#list>
+                                                <#if x==0>
+                                                    <form action="/agregar_usuario">
+                                                        <input type="submit" value="Follow" style="float: right">
+                                                        <input type="hidden" value="${usuario.getUsername()}" name="id" />
+                                                    </form>
+                                                </#if>
 
-                                                <form action="/agregar_usuario">
-                                                    <input type="submit" value="Follow">
-                                                    <input type="hidden" value="${usuario.getUsername()}" name="id" />
-                                                </form>
+
                                             </#if>
-
 
                                         </div>
 

@@ -72,11 +72,11 @@
                                         </div>
 
                                     </form>
-
-
                                 </div>
                             </div>
                         </div>
+                    <#else>
+                    <h3>No hay publicaciones</h3>
                     </#list>
 
                     </div>
