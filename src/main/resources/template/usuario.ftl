@@ -35,7 +35,7 @@
                             <div class="photo-box">
                                 <div class="image-wrap">
                                     <a href="/usuario/${usuario.getUsername()}/${post.getId()}"><img src="/${post.getImagen()}"></a>
-                                    <div class="likes">${post.getLikes()}</div>
+                                    <div class="likes">${post.getNumLikes()}</div>
                                 </div>
                                 <div class="description">
                                 ${post.getCuerpo()}

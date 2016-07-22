@@ -42,6 +42,7 @@
                                                         <#break >
                                                     </#if>
                                                     <#else>
+                                                        <#assign x = 2>
                                                         <form action="/agregar_usuario">
                                                             <input type="submit" value="Follow" style="float: right">
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />

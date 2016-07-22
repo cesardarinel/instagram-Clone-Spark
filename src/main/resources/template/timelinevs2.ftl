@@ -31,9 +31,29 @@
                                 </div>
                                 <div class="image-wrap">
                                     <img src="${post.getImagen()}" class="img-responsive" ><br/>
-                                    <div class="likes">${post.getLikes()}</div>
+                                    <div class="likes">${post.getNumLikes()}</div>
                                 </div>
                                 <div class="description">
+                                    <#assign x = 0>
+                                    <#list post.getLikes() as like>
+                                    <#if like.getUsername() == usuario.getUsername()>
+                                        <#assign x = 1>
+                                        <form action="/dislike/${post.getId()}">
+                                            <input style="float: right" type="submit" value="Dislike">
+                                        </form>
+                                        <#break >
+                                    </#if>
+                                    <#else>
+                                        <#assign x = 2>
+                                        <form action="/like/${post.getId()}">
+                                            <input style="float: right" type="submit" value="like">
+                                        </form>
+                                    </#list>
+                                    <#if x==0>
+                                        <form action="/like/${post.getId()}">
+                                            <input style="float: right" type="submit" value="like">
+                                        </form>
+                                    </#if>
 
                                     <#if usuario.getUsername()== post.getUsuario().getUsername() >
                                         <form action="/eliminarpost/${post.getId()}">

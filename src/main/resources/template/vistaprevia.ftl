@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="image-wrap">
                                     <img src="/${post.getImagen()}" class="img-responsive" ><br/>
-                                    <div class="likes">${post.getLikes()}</div>
+                                    <div class="likes">${post.getNumLikes()}</div>
                                 </div>
                                 <div class="description">
 

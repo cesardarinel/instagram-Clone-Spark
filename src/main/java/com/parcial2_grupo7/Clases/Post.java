@@ -15,51 +15,54 @@ import java.util.List;
  */
 @Entity
 @Table(name = "POST")
-public class Post{
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "ID")
+    @Column(name = "ID")
     private int id;
 
-    @Column (name = "CUERPO", length = 100000)
+    @Column(name = "CUERPO", length = 100000)
     private String cuerpo;
 
-    @Column (name = "IMAGEN", length = 100)
+    @Column(name = "IMAGEN", length = 100)
     private String imagen;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USUARIO_ID")
     private Usuario usuario;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "post", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comentario> comentarios = new ArrayList<>();
 
-    @ManyToMany (fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-    @JoinTable(name = "POST_ETIQUETA",joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "ETIQUETA_ID")})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(name = "POST_ETIQUETA", joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "ETIQUETA_ID")})
     private List<Etiqueta> etiquetas = new ArrayList<>();
 
-    @Column (name = "FECHA")
+    @Column(name = "FECHA")
     private LocalDate fecha;
 
-    @Column (name = "LIKES")
-    private int likes;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinTable(name = "LIKES", joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "USUARIO_ID")})
+    private List<Usuario> likes = new ArrayList<>();
 
 
     public Post() {
     }
 
-    public Post(String cuerpo, String imagen, Usuario usuario, List<Comentario> comentarios, List<Etiqueta> etiquetas, LocalDate fecha, int likes) {
+    public Post(String cuerpo, String imagen, Usuario usuario, List<Comentario> comentarios, LocalDate fecha, List<Etiqueta> etiquetas, List<Usuario> likes) {
         this.cuerpo = cuerpo;
         this.imagen = imagen;
         this.usuario = usuario;
         this.comentarios = comentarios;
-        this.etiquetas = etiquetas;
         this.fecha = fecha;
+        this.etiquetas = etiquetas;
         this.likes = likes;
-
     }
 
+    public  int getNumLikes(){
+        return this.getLikes().size();
+    }
     public long getId() {
         return id;
     }
@@ -116,12 +119,12 @@ public class Post{
         this.fecha = fecha;
     }
 
-    public int getLikes() {
+    public List<Usuario> getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(List<Usuario> likes) {
         this.likes = likes;
     }
-
 }
+

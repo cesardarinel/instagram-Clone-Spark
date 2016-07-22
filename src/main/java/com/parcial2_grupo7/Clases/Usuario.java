@@ -29,14 +29,16 @@ public class Usuario {
     @Column(name = "DESCRIPCION")
     private String descripcion;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<Post> posts = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "likes",fetch = FetchType.EAGER)
+    private List<Post> liked = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<Comentario> comentarios = new ArrayList<>();
 
-
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,cascade ={CascadeType.DETACH})
     @JoinTable(name="USER_FOLLOWERS",
             joinColumns={@JoinColumn(name="USERNAME")},
             inverseJoinColumns={@JoinColumn(name="FOLLOWER_ID")})
@@ -49,37 +51,26 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario( String imagen, String username, String email, String password, String descripcion, List<Post> posts, List<Comentario> comentarios) {
-        this.imagen = imagen;
+    public Usuario(String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
         this.username = username;
+        this.imagen = imagen;
         this.email = email;
         this.password = password;
         this.descripcion = descripcion;
         this.posts = posts;
+        this.liked = liked;
         this.comentarios = comentarios;
+        this.followers = followers;
+        this.following = following;
     }
 
-    public Usuario( String imagen, String username) {
-        this.imagen = imagen;
-        this.username = username;
+    public List<Post> getLiked() {
+        return liked;
     }
 
-
-    /*public Usuario getUsuario() {
-        return usuario;
+    public void setLiked(List<Post> liked) {
+        this.liked = liked;
     }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<Usuario> getSeguidores() {
-        return seguidores;
-    }
-
-    public void setSeguidores(List<Usuario> seguidores) {
-        this.seguidores = seguidores;
-    }*/
 
     public List<Usuario> getFollowers() {
         return followers;

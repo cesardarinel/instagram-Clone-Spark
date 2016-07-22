@@ -81,6 +81,38 @@ public class GestionDB<T> {
         }
     }
 
+    public void eliminarfollower(String usuarioSesion, String usuario){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.createNativeQuery("DELETE FROM USER_FOLLOWERS WHERE USERNAME=? AND FOLLOWER_ID=?").setParameter(1,usuario).setParameter(2,usuarioSesion).executeUpdate();
+
+            //em.remove(em.contains(entidad) ? entidad : em.merge(entidad));
+            em.getTransaction().commit();
+        }catch (Exception ex){
+            em.getTransaction().rollback();
+            throw  ex;
+        } finally {
+            em.close();
+        }
+    }
+
+    public void eliminarlikes(String usuarioSesion, long post){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.createNativeQuery("DELETE FROM LIKES WHERE USUARIO_ID=? AND POST_ID=?").setParameter(1,usuarioSesion).setParameter(2,post).executeUpdate();
+
+            //em.remove(em.contains(entidad) ? entidad : em.merge(entidad));
+            em.getTransaction().commit();
+        }catch (Exception ex){
+            em.getTransaction().rollback();
+            throw  ex;
+        } finally {
+            em.close();
+        }
+    }
+
     /**
      *
      * @param id

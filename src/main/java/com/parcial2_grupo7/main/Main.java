@@ -1,11 +1,9 @@
 package com.parcial2_grupo7.main;
 
-import com.parcial2_grupo7.Clases.Comentario;
-import com.parcial2_grupo7.Clases.Etiqueta;
-import com.parcial2_grupo7.Clases.Post;
+import com.parcial2_grupo7.Clases.*;
 import com.parcial2_grupo7.Servicios.*;
-import com.parcial2_grupo7.Clases.Usuario;
 import freemarker.template.Configuration;
+import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.Hibernate;
 import spark.ModelAndView;
 import spark.Session;
@@ -13,6 +11,7 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.servlet.MultipartConfigElement;
 import java.io.File;
 import java.io.InputStream;
@@ -74,7 +73,6 @@ public class Main {
             Map<String, Object> attributes = new HashMap<>();
 
             Usuario usuario = request.session().attribute("usuario");
-            ArrayList<Usuario> users = new ArrayList<Usuario>();
             List<Usuario> followings =  usuario.getFollowing();
             List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
             List<Post> listaFollowing = new ArrayList<Post>();
@@ -103,13 +101,14 @@ public class Main {
             Collections.reverse(listaFollowing);
             attributes.put("posts", listaFollowing);
             attributes.put("usuario", usuario);
+
             return new ModelAndView(attributes, "timelinevs2.ftl");
         }, freeMarkerEngine);
 
         get("/usuario/:username", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            Usuario usuario = (Usuario) MantenimientoUsuario.getInstancia().getEntityManager().createQuery("SELECT U FROM Usuario U WHERE U.username='" + request.params("username") + "'").getSingleResult();
+            Usuario usuario = MantenimientoUsuario.getInstancia().find(request.params("username"));
             System.out.println(usuario.getUsername());
             int followers =  usuario.getFollowers().size();
             int following = usuario.getFollowing().size();
@@ -312,7 +311,7 @@ public class Main {
         get("/crearpost", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            attributes.put("post", new Post("", "", null, null, null, null, 0));
+            attributes.put("post", new Post("", "", null, null, null, null, null));
             attributes.put("stringEtiquetas", "");
 
             return new ModelAndView(attributes, "crearPost.ftl");
@@ -434,6 +433,35 @@ public class Main {
 
             return "";
         });
+
+
+        get("/unfollow_usuario", (request, response) -> {
+
+
+            Map<String, Object> attributes = new HashMap<>();
+
+            String id_usuario = request.queryParams("id");
+            System.out.println(id_usuario);
+            Usuario usuarioSesion = request.session().attribute("usuario");
+            Usuario usuario = MantenimientoUsuario.getInstancia().find(id_usuario);
+            List<Usuario> nuevaLista = new ArrayList<Usuario>();
+            for(Usuario following: usuarioSesion.getFollowing()){
+                if(following.getUsername().equals(usuario.getUsername())){
+
+                    MantenimientoUsuario.getInstancia().eliminarfollower(usuarioSesion.getUsername(),usuario.getUsername());
+
+                }else{
+                    nuevaLista.add(following);
+                }
+            }
+            usuarioSesion.setFollowing(nuevaLista);
+            MantenimientoUsuario.getInstancia().editar(usuarioSesion);
+
+            response.redirect("/home");
+
+            return "";
+        });
+
         get("/eliminarpost/:id_post", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
@@ -445,6 +473,44 @@ public class Main {
 
             return "";
         });
+
+        get("/like/:id_post", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            Usuario usuarioSesion = request.session().attribute("usuario");
+            int id_post = Integer.parseInt(request.params("id_post"));
+            Post post = MantenimientoPost.getInstancia().find(id_post);
+            post.getLikes().add(usuarioSesion);
+            MantenimientoPost.getInstancia().editar(post);
+
+            response.redirect("/home");
+
+            return "";
+        });
+
+        get("/dislike/:id_post", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            Usuario usuarioSesion = request.session().attribute("usuario");
+            int id_post = Integer.parseInt(request.params("id_post"));
+            Post post = MantenimientoPost.getInstancia().find(id_post);
+            List<Usuario> nuevosLikes = new ArrayList<Usuario>();
+            for(Usuario like:post.getLikes()){
+                if(like.getUsername().equals(usuarioSesion.getUsername())){
+                    MantenimientoUsuario.getInstancia().eliminarlikes(usuarioSesion.getUsername(),post.getId());
+                }else{
+                    nuevosLikes.add(like);
+                }
+            }
+            post.setLikes(nuevosLikes);
+
+            MantenimientoPost.getInstancia().editar(post);
+
+            response.redirect("/home");
+
+            return "";
+        });
+
         get("/eliminarcomentario/:id_comentario", (request, response) -> {
 
             int id_comentario = Integer.parseInt(request.params("id_comentario"));
