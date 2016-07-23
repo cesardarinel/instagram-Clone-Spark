@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05d74a00-26ed-4fd1-9018-63ebde547cda" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/JsonTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/JsonUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/webservice.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/parcial2_grupo7.iml" afterPath="$PROJECT_DIR$/.idea/modules/parcial2_grupo7.iml" />
+    <list default="true" id="05d74a00-26ed-4fd1-9018-63ebde547cda" name="Default" comment="Service created">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Comentario.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Comentario.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Etiqueta.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Etiqueta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Post.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Post.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Usuario.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Usuario.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Filtro.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Filtro.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Main.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/webservice.java" afterPath="$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/webservice.java" />
     </list>
     <list id="16e5f091-0db0-4a1e-9f77-7b56e4843db3" name="Failed commit: Default" comment="ORM cambios faltantes&#10;" />
     <ignored path="parcial2_grupo7.iws" />
@@ -83,8 +71,8 @@
       <file leaf-file-name="webservice.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/webservice.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1304#1310#0" expanded="true" />
@@ -96,8 +84,8 @@
       <file leaf-file-name="Post.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Post.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="74" column="64" selection-start-line="74" selection-start-column="64" selection-end-line="74" selection-end-column="64" />
+            <state relative-caret-position="173">
+              <caret line="65" column="6" selection-start-line="65" selection-start-column="6" selection-end-line="70" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -1368,7 +1356,7 @@
       <workItem from="1469120291153" duration="5017000" />
       <workItem from="1469135164445" duration="24781000" />
       <workItem from="1469204854858" duration="19218000" />
-      <workItem from="1469284378479" duration="23678000" />
+      <workItem from="1469284378479" duration="25494000" />
     </task>
     <task id="LOCAL-00001" summary="Creacion del proyecto con las clases por ahora necesarias&#10;">
       <created>1466618112618</created>
@@ -1601,11 +1589,18 @@
       <option name="project" value="LOCAL" />
       <updated>1469166403075</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Service created">
+      <created>1469314839319</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1469314839319</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228410000" />
+    <option name="totallyTimeSpent" value="230226000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1618,7 +1613,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="2" width="1372" height="733" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32833335" sideWeight="0.2963526" order="7" side_tool="true" content_ui="tabs" />
@@ -1638,7 +1633,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32436976" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44666666" sideWeight="0.48480242" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44666666" sideWeight="0.48480242" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294509" sideWeight="0.4969605" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27057928" sideWeight="0.47666666" order="0" side_tool="false" content_ui="combo" />
@@ -1722,7 +1717,8 @@
     <MESSAGE value="Arreglos en el validador de imagen. Creacion de la seccion en donde se podre encontrar nuevos usuarios (Usuarios registrados)" />
     <MESSAGE value="Bug en followers y following" />
     <MESSAGE value="Followers y following funcionando. Timeline funcionando." />
-    <option name="LAST_COMMIT_MESSAGE" value="Followers y following funcionando. Timeline funcionando." />
+    <MESSAGE value="Service created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Service created" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1955,16 +1951,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/Clases/Post.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="74" column="64" selection-start-line="74" selection-start-column="64" selection-end-line="74" selection-end-column="64" />
+        <state relative-caret-position="173">
+          <caret line="65" column="6" selection-start-line="65" selection-start-column="6" selection-end-line="70" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parcial2_grupo7/main/webservice.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1304#1310#0" expanded="true" />

@@ -47,19 +47,14 @@ public class webservice {
         }, json());
 
 
-        post("/crearpost/:usuario", (request, response) -> {
-                    Gson gson = new Gson();
+        post("/crearpost/:usuario/:imagen/:contenido/", (request, response) -> {
 
-                    Post p = new Post("la gentee", "asfg42",new Usuario());
-                    String json = gson.toJson(p);
-                    Post nu = gson.fromJson(json, Post.class);
-                    Usuario usuario = request.session().attribute("usuario");
-
-                    nu.setUsuario(usuario);
-                    nu.setCuerpo(request.queryParams("contenido"));
-                    nu.setEtiquetas(nu.getEtiquetas());
+                    Post nu = new Post();
+                    Usuario user = MantenimientoUsuario.getInstancia().find(request.params(":user"));
+                    nu.setUsuario(user);
+                    nu.setCuerpo(request.params("contenido"));
                     nu.setFecha(LocalDate.now());
-                    nu.setImagen(nu.getImagen());
+                    nu.setImagen(request.params("imagen"));
 
                     MantenimientoPost.getInstancia().crear(nu);
 
