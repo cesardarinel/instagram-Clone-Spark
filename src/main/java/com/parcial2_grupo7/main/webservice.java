@@ -50,7 +50,7 @@ public class webservice {
         post("/crearpost/:usuario/:imagen/:contenido/", (request, response) -> {
 
                     Post nu = new Post();
-                    Usuario user = MantenimientoUsuario.getInstancia().find(request.params(":user"));
+                    Usuario user = MantenimientoUsuario.getInstancia().find(request.params(":usuario"));
                     nu.setUsuario(user);
                     nu.setCuerpo(request.params("contenido"));
                     nu.setFecha(LocalDate.now());
