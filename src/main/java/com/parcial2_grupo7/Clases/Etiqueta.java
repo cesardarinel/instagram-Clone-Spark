@@ -1,5 +1,7 @@
 package com.parcial2_grupo7.Clases;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,13 +12,15 @@ import java.util.List;
  */
 @Entity
 @Table (name = "ETIQUETA")
-public class Etiqueta {
+public class Etiqueta implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "ID")
+    @Expose
     private int id;
     @Column(name = "TAG")
+    @Expose
     private String etiqueta;
 
     @ManyToMany(mappedBy = "etiquetas", cascade = CascadeType.MERGE)

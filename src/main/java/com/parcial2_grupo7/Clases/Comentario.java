@@ -1,5 +1,7 @@
 package com.parcial2_grupo7.Clases;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,16 +10,19 @@ import java.io.Serializable;
  */
 @Entity
 @Table (name = "COMENTARIOS")
-public class Comentario{
+public class Comentario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "ID")
+    @Expose
     private int id;
     @Column (name = "COMENTARIO")
+    @Expose
     private String comentario;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USUARIO_ID")
+    @Expose
     private Usuario usuario;
 
 

@@ -20,5 +20,6 @@ dependencies {
     compile group: 'com.sparkjava', name: 'spark-template-freemarker', version: '2.3'
     compile 'com.sparkjava:spark-debug-tools:0.5'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
-
+    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.22.2'
+    compile 'com.google.code.gson:gson:2.6.2'
 }

@@ -1,5 +1,6 @@
 package com.parcial2_grupo7.Clases;
 
+import com.google.gson.annotations.Expose;
 import com.parcial2_grupo7.Servicios.MantenimientoUsuario;
 
 import javax.persistence.*;
@@ -15,10 +16,11 @@ import java.util.Set;
  */
 @Entity
 @Table (name = "USUARIOS")
-public class Usuario {
+public class Usuario implements Serializable {
 
     @Id
     @Column(name = "USERNAME")
+    @Expose
     private String username;
     @Column(name = "IMAGEN")
     private String imagen;

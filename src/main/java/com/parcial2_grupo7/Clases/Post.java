@@ -1,11 +1,14 @@
 package com.parcial2_grupo7.Clases;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,37 +16,46 @@ import java.util.List;
 /**
  * Created by marti on 22/6/2016.
  */
+
 @Entity
 @Table(name = "POST")
-public class Post {
+public class Post implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+    @Expose
     private int id;
 
     @Column(name = "CUERPO", length = 100000)
+    @Expose
     private String cuerpo;
 
     @Column(name = "IMAGEN", length = 100)
+    @Expose
     private String imagen;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USUARIO_ID")
-    private Usuario usuario;
+    @Expose
+    private  Usuario usuario;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", cascade = CascadeType.REMOVE)
+    @Expose
     private List<Comentario> comentarios = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "POST_ETIQUETA", joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "ETIQUETA_ID")})
+    @Expose
     private List<Etiqueta> etiquetas = new ArrayList<>();
 
     @Column(name = "FECHA")
+    @Expose
     private LocalDate fecha;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(name = "LIKES", joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "USUARIO_ID")})
+    @Expose
     private List<Usuario> likes = new ArrayList<>();
 
 
@@ -58,6 +70,12 @@ public class Post {
         this.fecha = fecha;
         this.etiquetas = etiquetas;
         this.likes = likes;
+    }
+
+    public Post(String cuerpo, String imagen, Usuario usuario) {
+        this.cuerpo = cuerpo;
+        this.imagen = imagen;
+        this.usuario = usuario;
     }
 
     public  int getNumLikes(){

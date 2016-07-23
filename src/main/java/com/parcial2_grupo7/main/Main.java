@@ -68,7 +68,8 @@ public class Main {
             return new ModelAndView(attributes, "index.ftl");
         }, freeMarkerEngine);
 
-
+        webservice service = new webservice();
+        service.start();
         get("/home", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 

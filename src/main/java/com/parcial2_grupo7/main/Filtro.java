@@ -2,6 +2,7 @@ package com.parcial2_grupo7.main;
 
 import com.parcial2_grupo7.Clases.Usuario;
 
+import static spark.Spark.after;
 import static spark.Spark.before;
 
 
@@ -26,6 +27,10 @@ public class Filtro {
                 response.redirect("/");
             }
         });
+        after("/webapi",(req, res) -> {
+            res.type("application/json");
+        });
+
 
     }
 }
