@@ -27,8 +27,8 @@ import static spark.Spark.*;
  */
 
 
-public class webservice {
-    public webservice() {
+public class WebService {
+    public WebService() {
     }
 
     public void start() {
