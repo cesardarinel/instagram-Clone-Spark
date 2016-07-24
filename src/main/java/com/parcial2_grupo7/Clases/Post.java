@@ -31,7 +31,7 @@ public class Post implements Serializable {
     @Expose
     private String cuerpo;
 
-    @Column(name = "IMAGEN", length = 100)
+    @Column(name = "IMAGEN", length = 10000000)
     @Expose
     private String imagen;
 

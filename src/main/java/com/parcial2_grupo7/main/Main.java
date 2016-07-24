@@ -3,17 +3,14 @@ package com.parcial2_grupo7.main;
 import com.parcial2_grupo7.Clases.*;
 import com.parcial2_grupo7.Servicios.*;
 import freemarker.template.Configuration;
-import org.apache.commons.lang3.ObjectUtils;
-import org.hibernate.Hibernate;
 import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import javax.activation.MimetypesFileTypeMap;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import javax.servlet.MultipartConfigElement;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -47,6 +44,8 @@ public class Main {
         File uploadDir = new File("upload");
         uploadDir.mkdir(); // create the upload directory if it doesn't exist
         externalStaticFileLocation("upload");
+        WebService service = new WebService();
+        service.start();
 
         //iniciamos la base de datos
         try {
@@ -68,8 +67,7 @@ public class Main {
             return new ModelAndView(attributes, "index.ftl");
         }, freeMarkerEngine);
 
-        webservice service = new webservice();
-        service.start();
+
         get("/home", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
@@ -163,17 +161,27 @@ public class Main {
             Usuario usuario = request.session().attribute("usuario");
             Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
             request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+
             try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
                 // Use the input stream to create a file
+
                 Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
+                File file = tempFile.toFile();
+                FileInputStream imageInFile = new FileInputStream(file);
                 String mimetype = request.raw().getPart("upfile").getContentType();
                 String type = mimetype.split("/")[0];
                 if (type.equals("image")) {
                     if (request.queryParams("password").equals(request.queryParams("password2"))) {
                         usuario.setPassword(request.queryParams("password"));
-                        System.out.println(request.raw().getPart("upfile").getInputStream().read());
+
                         if (request.raw().getPart("upfile").getInputStream().read() != -1) {
-                            usuario.setImagen(tempFile.getFileName().toString());
+                            // Reading a Image file from file system
+                            byte imageData[] = new byte[(int)file.length()];
+                            imageInFile.read(imageData);
+
+                            // Converting Image byte array into Base64 String
+                            String imageDataString = Base64.getEncoder().encodeToString(imageData);
+                            usuario.setImagen(imageDataString);
                         }
                         usuario.setDescripcion(request.queryParams("descripcion"));
                         usuario.setEmail(request.queryParams("email"));
@@ -279,13 +287,17 @@ public class Main {
             try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
                 // Use the input stream to create a file
                 Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
-
+                File file = tempFile.toFile();
+                FileInputStream imageInFile = new FileInputStream(file);
+                byte imageData[] = new byte[(int)file.length()];
+                imageInFile.read(imageData);
+                String imageDataString = Base64.getEncoder().encodeToString(imageData);
                     if (!request.queryParams("username").equals(null)) {
                         String mimetype = request.raw().getPart("upfile").getContentType();
                         String type = mimetype.split("/")[0];
                         if (type.equals("image")) {
                             Usuario usuario = new Usuario();
-                            usuario.setImagen(tempFile.getFileName().toString());
+                            usuario.setImagen(imageDataString);
                             usuario.setPassword(request.queryParams("password"));
                             usuario.setUsername(request.queryParams("username"));
                             usuario.setDescripcion(request.queryParams("descripcion"));
@@ -328,7 +340,11 @@ public class Main {
             try (InputStream is = request.raw().getPart("upfile").getInputStream()) {
                 // Use the input stream to create a file
                 Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
-
+                File file = tempFile.toFile();
+                FileInputStream imageInFile = new FileInputStream(file);
+                byte imageData[] = new byte[(int)file.length()];
+                imageInFile.read(imageData);
+                String imageDataString = Base64.getEncoder().encodeToString(imageData);
                 String mimetype = request.raw().getPart("upfile").getContentType();
                 String type = mimetype.split("/")[0];
                 if (type.equals("image")) {
@@ -342,7 +358,7 @@ public class Main {
                     List<Etiqueta> listaEtiquetas = creacionEtiquetas(etiquetas);
                     post.setEtiquetas(listaEtiquetas);
                     post.setFecha(LocalDate.now());
-                    post.setImagen(tempFile.getFileName().toString());
+                    post.setImagen(imageDataString);
 
                     MantenimientoPost.getInstancia().crear(post);
                     response.redirect("/home");

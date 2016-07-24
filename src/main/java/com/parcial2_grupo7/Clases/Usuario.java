@@ -22,7 +22,7 @@ public class Usuario implements Serializable {
     @Column(name = "USERNAME")
     @Expose
     private String username;
-    @Column(name = "IMAGEN")
+    @Column(name = "IMAGEN", length = 10000000)
     private String imagen;
     @Column(name = "EMAIL")
     private String email;

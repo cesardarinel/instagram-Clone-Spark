@@ -22,7 +22,7 @@
 
                                     <div class="username" style="float: left">
                                         <div class="avatar">
-                                            <img src="${usuario.getImagen()!}">
+                                            <img src="data:image/jpeg;base64,${usuario.getImagen()!}">
                                         </div>
                                         <div>
                                             <a href="usuario/${usuario.getUsername()}"><h4>${usuario.getUsername()}</h4></a>

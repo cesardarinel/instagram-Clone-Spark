@@ -24,13 +24,13 @@
                                 <div class="header">
                                     <div class="username">
                                         <div class="avatar">
-                                            <img src="${post.getUsuario().getImagen()!}">
+                                            <img src="data:image/jpeg;base64,${post.getUsuario().getImagen()!}">
                                         </div>
                                         <a href="usuario/${post.getUsuario().getUsername()}">${post.getUsuario().getUsername()}</a>
                                     </div>
                                 </div>
                                 <div class="image-wrap">
-                                    <img src="${post.getImagen()}" class="img-responsive" ><br/>
+                                    <img src="data:image/jpeg;base64,${post.getImagen()}" class="img-responsive" ><br/>
                                     <div class="likes">${post.getNumLikes()}</div>
                                 </div>
                                 <div class="description">

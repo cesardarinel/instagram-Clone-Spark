@@ -72,7 +72,7 @@
                             <div class="center-block">
                                 <label for="upfile">Imagen de perfil:</label>
                                 <div class="avatar">
-                                    <img src="/${usuario.getImagen()!}">
+                                    <img src="data:image/jpeg;base64,${usuario.getImagen()!}">
                                 </div>
                                 <div id="drop-zone">
                                     Drop files here...
