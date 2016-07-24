@@ -27,8 +27,8 @@ import static spark.Spark.*;
  */
 
 
-public class WebService {
-    public WebService() {
+public class webservice {
+    public webservice() {
     }
 
     public void start() {
@@ -50,7 +50,7 @@ public class WebService {
         post("/crearpost/:usuario/:imagen/:contenido/", (request, response) -> {
 
                     Post nu = new Post();
-                    Usuario user = MantenimientoUsuario.getInstancia().find(request.params("usuario"));
+                    Usuario user = MantenimientoUsuario.getInstancia().find(request.params(":usuario"));
                     nu.setUsuario(user);
                     nu.setCuerpo(request.params("contenido"));
                     nu.setFecha(LocalDate.now());
