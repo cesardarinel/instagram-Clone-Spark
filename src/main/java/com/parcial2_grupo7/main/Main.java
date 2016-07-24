@@ -44,8 +44,8 @@ public class Main {
         File uploadDir = new File("upload");
         uploadDir.mkdir(); // create the upload directory if it doesn't exist
         externalStaticFileLocation("upload");
-        WebService service = new WebService();
-        service.start();
+        new ClientController(new ClientService());
+
 
         //iniciamos la base de datos
         try {
